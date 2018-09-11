@@ -1,12 +1,13 @@
-import * as style from './index.css';
+import * as React from 'react';
+import { render } from 'react-dom';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-function component() {
-  var element = document.createElement('div');
+// Render the app
+render(
+  <App />,
+  document.getElementById('root') as HTMLElement
+);
 
-  element.innerHTML = 'Hello react experiment by Giancarlo';
-  element.classList.add(style.hello);
-
-  return element;
-}
-
-document.body.appendChild(component());
+// Register the service worker
+registerServiceWorker();
