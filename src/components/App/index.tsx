@@ -1,5 +1,6 @@
 import * as React from 'react';
-import * as style from './style.css';
+import style from './style.css';
+import BarChart from '../BarChart';
 
 class App extends React.Component {
   public render() {
@@ -11,6 +12,7 @@ class App extends React.Component {
         <p className={style.AppIntro}>
           To get started, edit <code>src/App/index.tsx</code> and save to reload.
         </p>
+        <BarChart />
       </div>
     );
   }

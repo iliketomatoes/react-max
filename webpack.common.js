@@ -1,17 +1,31 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const {CheckerPlugin} = require('awesome-typescript-loader');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.tsx',
   output: {
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].chunk.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '',
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader', 'source-map-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader', 'awesome-typescript-loader'],
+      },
       {
         test: /\.css$/,
         use: [
@@ -25,17 +39,19 @@ module.exports = {
             }
           },
         ]
-      },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
       }
     ]
   },
-  resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
-  },
+  plugins: [
+    new webpack.HashedModuleIdsPlugin(),
+    new CheckerPlugin(),
+    new StyleLintPlugin(),
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      title: 'React app dashboard',
+      template: './src/index.html'
+    })
+  ],
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
@@ -47,17 +63,5 @@ module.exports = {
         }
       }
     }
-  },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      title: 'React app dashboard',
-      template: './src/index.html'
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.WatchIgnorePlugin([
-      /css\.d\.ts$/
-    ]),
-  ]
+  }
 };
