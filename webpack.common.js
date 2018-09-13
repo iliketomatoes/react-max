@@ -46,7 +46,6 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     new CheckerPlugin(),
     new StyleLintPlugin(),
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'React app dashboard',
       template: './src/index.html'

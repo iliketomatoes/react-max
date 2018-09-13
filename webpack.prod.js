@@ -6,4 +6,7 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   entry: './src/index.tsx',
+  plugins: [
+    new CleanWebpackPlugin(['dist'])
+  ]
 });
