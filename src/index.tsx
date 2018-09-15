@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import AppRouter from './router';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
+
+const initialState = {
+  languageName: 'Giancarlo',
+  enthusiasmLevel: 3
+};
+
+const store = createStore(rootReducer, initialState);
 
 // Render the app
 render(
-  <AppRouter />,
+  <Main store={store} />,
   document.getElementById('root') as HTMLElement
 );
 
