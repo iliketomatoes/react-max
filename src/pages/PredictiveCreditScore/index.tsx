@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export class News extends React.Component {
+export default class PredictiveCreditScore extends React.Component {
   public render() {
     return (
       <div className='row'>
-        <h2>News page</h2>
+        <h2>Predictive Credit Score page</h2>
       </div>
     );
   }

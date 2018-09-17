@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export class About extends React.Component {
+export default class About extends React.Component {
   public render() {
     return (
       <div className='row'>
-        <h2> About page bella bella.</h2>
+        <h2> About page.</h2>
       </div>
     );
   }

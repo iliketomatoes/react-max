@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Route, HashRouter, Switch } from 'react-router-dom';
+import { Route, HashRouter, Switch, Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import { Timeline, News, Login, Portfolio, PredictiveCreditScore } from './pages';
+import Timeline from './pages/Timeline';
+import News from './pages/News';
+import Portfolio from './pages/Portfolio';
+import PredictiveCreditScore from './pages/PredictiveCreditScore';
 import Navigation from './components/Navigation';
 
 const routeConfig = [
@@ -18,7 +21,10 @@ class Routes extends React.Component {
           <React.Fragment>
             <Navigation routes={routeConfig}/>
             <Switch>
-              <Route exact path='/' component={Login} />
+              {/* <Route exact path='/' component={Login} /> */}
+              <Route exact path='/' render={() => (
+                <Redirect to={routeConfig[0].url} />
+              )}/>
               <Route path={routeConfig[0].url} component={News} />
               <Route path={routeConfig[1].url} component={Timeline} />
               <Route path={routeConfig[2].url} component={Portfolio} />

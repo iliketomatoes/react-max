@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export class PredictiveCreditScore extends React.Component {
+export default class Portfolio extends React.Component {
   public render() {
     return (
       <div className='row'>
-        <h2>Predictive Credit Score page</h2>
+        <h2>Portfolio page</h2>
       </div>
     );
   }

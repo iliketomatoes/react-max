@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export class Portfolio extends React.Component {
+export default class Timeline extends React.Component {
   public render() {
     return (
       <div className='row'>
-        <h2>Portfolio page</h2>
+        <h2>Timeline page</h2>
       </div>
     );
   }

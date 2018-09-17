@@ -12,11 +12,6 @@ class Post extends React.Component<PostProps> {
     super(props);
   }
 
-  handleClick = (e: React.SyntheticEvent) => {
-    console.log({e});
-    console.log('this is:', this);
-  }
-
   public render() {
     return (
       <div className={style.Post__link}>

@@ -9,6 +9,10 @@ const style = {
     marginLeft: -12,
     marginRight: 20,
   },
+  navAuthSection: {
+    'align-items': 'center',
+    display: 'flex',
+  },
   navList: {
     'list-style': 'none',
     margin: 0,
