@@ -6,7 +6,7 @@ import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
 
 const initialState = {
-  languageName: 'Giancarlo',
+  languageName: 'English',
   enthusiasmLevel: 3
 };
 
