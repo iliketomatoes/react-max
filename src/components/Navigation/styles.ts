@@ -1,4 +1,4 @@
-const style = {
+const styles = {
   root: {
     flexGrow: 1,
   },
@@ -23,4 +23,4 @@ const style = {
   }
 };
 
-export default style;
+export default styles;

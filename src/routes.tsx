@@ -7,11 +7,18 @@ import Portfolio from './pages/Portfolio';
 import PredictiveCreditScore from './pages/PredictiveCreditScore';
 import Navigation from './components/Navigation';
 
-const routeConfig = [
-  { label: 'News', url: '/news' },
-  { label: 'Timeline', url: '/timeline' },
-  { label: 'Portfolio', url: '/portfolio' },
-  { label: 'Predictive CS', url: '/predictive-credit-score' },
+enum URLS {
+  News = '/news',
+  Timeline = '/timeline',
+  Portfolio = '/portfolio',
+  PredictiveCreditScore = '/predictive-credit-score'
+}
+
+const navConfig = [
+  { label: 'News', url: URLS.News },
+  { label: 'Timeline', url: URLS.Timeline },
+  { label: 'Portfolio', url: URLS.Portfolio },
+  { label: 'Predictive CS', url: URLS.PredictiveCreditScore },
 ];
 
 class Routes extends React.Component {
@@ -19,16 +26,16 @@ class Routes extends React.Component {
     return (
         <HashRouter>
           <React.Fragment>
-            <Navigation routes={routeConfig}/>
+            <Navigation routes={navConfig}/>
             <Switch>
               {/* <Route exact path='/' component={Login} /> */}
               <Route exact path='/' render={() => (
-                <Redirect to={routeConfig[0].url} />
+                <Redirect to={URLS.News} />
               )}/>
-              <Route path={routeConfig[0].url} component={News} />
-              <Route path={routeConfig[1].url} component={Timeline} />
-              <Route path={routeConfig[2].url} component={Portfolio} />
-              <Route path={routeConfig[3].url} component={PredictiveCreditScore} />
+              <Route path={URLS.News} component={News} />
+              <Route path={URLS.Timeline} component={Timeline} />
+              <Route path={URLS.Portfolio} component={Portfolio} />
+              <Route path={URLS.PredictiveCreditScore} component={PredictiveCreditScore} />
               <Route component={() => <div>Not Found</div>} />
             </Switch>
           </React.Fragment>

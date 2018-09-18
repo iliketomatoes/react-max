@@ -13,6 +13,8 @@
     "no-eval": true,
     "no-trailing-whitespace": true,
     "no-unsafe-finally": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true,
     "one-line": [
       true,
       "check-open-brace",

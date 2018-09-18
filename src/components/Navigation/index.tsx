@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { WithStyles } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { WithStyles, withStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import styles from './styles';
-import NavLink from '../NavLink';
+import NavLink from '../NavigationLink';
 
 interface NavProps extends WithStyles<typeof styles> {
   routes: { label: string, url: string}[];
@@ -19,8 +18,8 @@ interface NavProps extends WithStyles<typeof styles> {
 class Navigation extends React.Component<NavProps> {
 
   state = {
-    auth: true,
     anchorEl: null,
+    auth: true,
   };
 
   constructor(props: NavProps) {
@@ -80,12 +79,12 @@ class Navigation extends React.Component<NavProps> {
                   id='menu-appbar'
                   anchorEl={anchorEl}
                   anchorOrigin={{
-                    vertical: 'top',
                     horizontal: 'right',
+                    vertical: 'top',
                   }}
                   transformOrigin={{
-                    vertical: 'top',
                     horizontal: 'right',
+                    vertical: 'top',
                   }}
                   open={open}
                   onClose={this.handleClose}

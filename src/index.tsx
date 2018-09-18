@@ -6,8 +6,8 @@ import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
 
 const initialState = {
+  enthusiasmLevel: 3,
   languageName: 'English',
-  enthusiasmLevel: 3
 };
 
 const store = createStore(rootReducer, initialState);

@@ -1,25 +1,36 @@
 import * as React from 'react';
-import { WithStyles } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import styles from './styles';
+import PaneGrid from '../../components/PaneGrid';
 import Pane from '../../components/Pane';
 
-interface NewsProps extends WithStyles<typeof styles> {}
+interface NewsProps {}
 
 class News extends React.Component<NewsProps> {
+
+  state = {
+    firstPane: {
+      categories: ['Automotive']
+    },
+    secondPane: {
+      categories: ['Telecommunication', 'Technology']
+    },
+    thirdPane: {
+      categories: ['Pharmaceutical', 'AIGPAR']
+    },
+    visiblePanes: 3 as 1 | 2 | 3
+  };
+
   public render() {
+
+    const { firstPane, secondPane, thirdPane, visiblePanes } = this.state;
+
     return (
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-      >
-        <Pane />
-      </Grid>
+      <PaneGrid visiblePanes={visiblePanes}>
+        <Pane categories={firstPane.categories} />
+        {visiblePanes > 1 && <Pane categories={secondPane.categories} />}
+        {visiblePanes > 2 && <Pane categories={thirdPane.categories} />}
+      </PaneGrid>
     );
   }
 }
 
-export default withStyles(styles)(News);
+export default (News);
