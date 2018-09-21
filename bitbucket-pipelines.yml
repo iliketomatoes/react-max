@@ -7,25 +7,25 @@ pipelines:
       script:
         - npm install
       caches:
-        - node_modules
+        - node
     - step:
       name: lint
       script:
         - npm run lint
       caches:
-        - node_modules
+        - node
     - step:
       name: test
       script:
         - npm test
       caches:
-        - node_modules
+        - node
     - step:
       name: build
       script:
         - npm run build
       caches:
-        - node_modules
+        - node
       artifacts:
         - dist/**
     - step:
