@@ -1,0 +1,39 @@
+image: node:8
+
+pipelines:
+  default:
+    - step:
+        name: install
+        script:
+          - npm install
+        caches:
+          - node
+    - step:
+        name: lint
+        script:
+          - npm run lint
+        caches:
+          - node
+    # - step:
+    #     name: test
+    #     script:
+    #       - npm test
+    #     caches:
+    #       - node
+    - step:
+        name: build
+        script:
+          - npm run build
+        caches:
+          - node
+        artifacts:
+          - dist/**
+    - step:
+        name: deploy
+        image: google/cloud-sdk
+        script:
+          - echo "$GAE_KEY" > /tmp/gae_key.json
+          - gcloud config set project $GAE_PROJECT
+          - gcloud auth activate-service-account --key-file /tmp/gae_key.json
+          - gcloud --quiet app deploy app.yaml --version ${BITBUCKET_BRANCH//\//-} --no-promote
+          - rm /tmp/gae_key.json
