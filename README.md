@@ -26,3 +26,8 @@ npm ci
 ### Build for production
 
 `npm run build`
+
+
+### Deploying to AppEngine
+
+`gcloud app deploy`

@@ -9,7 +9,8 @@
     "lint": "npx tslint --project '.' --format stylish",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "start": "npm run dev"
   },
   "keywords": [],
   "author": "",
