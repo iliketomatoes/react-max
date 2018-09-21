@@ -14,12 +14,12 @@ pipelines:
           - npm run lint
         caches:
           - node
-    - step:
-        name: test
-        script:
-          - npm test
-        caches:
-          - node
+    # - step:
+    #     name: test
+    #     script:
+    #       - npm test
+    #     caches:
+    #       - node
     - step:
         name: build
         script:
