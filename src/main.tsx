@@ -8,6 +8,8 @@ import Routes from './routes';
 import { History } from 'history';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { ApolloProvider } from 'react-apollo';
+import graphQLClient from './graphQLClient';
 
 // Separate props from state and props from dispatch to their own interfaces.
 // interface PropsFromState {
@@ -44,14 +46,16 @@ class Main extends React.Component<AllProps> {
     const { store, history } = this.props;
 
     return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes />
-          </MuiThemeProvider>
-        </ConnectedRouter>
-      </Provider>
+      <ApolloProvider client={graphQLClient}>
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <MuiThemeProvider theme={theme}>
+              <CssBaseline />
+              <Routes />
+            </MuiThemeProvider>
+          </ConnectedRouter>
+        </Provider>
+      </ApolloProvider>
     );
   }
 }
