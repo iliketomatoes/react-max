@@ -31,6 +31,12 @@ module.exports = {
         use: ['babel-loader', 'awesome-typescript-loader'],
       },
       {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+          ]
+      },
+      {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
