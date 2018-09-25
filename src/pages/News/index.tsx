@@ -8,29 +8,28 @@ class News extends React.Component<NewsProps> {
 
   state = {
     firstPane: {
-      categories: ['Automotive']
+      categories: ['Automotive', 'Twitter']
     },
     secondPane: {
       categories: ['Telecommunication', 'Technology']
     },
     thirdPane: {
       categories: ['Pharmaceutical', 'AIGPAR']
-    },
-    visiblePanes: 3 as 1 | 2 | 3
+    }
   };
 
   public render() {
 
-    const { firstPane, secondPane, thirdPane, visiblePanes } = this.state;
+    const { firstPane, secondPane, thirdPane } = this.state;
 
     return (
-      <PaneGrid visiblePanes={visiblePanes}>
+      <PaneGrid>
         <Pane categories={firstPane.categories} />
-        {visiblePanes > 1 && <Pane categories={secondPane.categories} />}
-        {visiblePanes > 2 && <Pane categories={thirdPane.categories} />}
+        <Pane categories={secondPane.categories} />
+        <Pane categories={thirdPane.categories} />
       </PaneGrid>
     );
   }
 }
 
-export default (News);
+export default News;

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Route, HashRouter, Switch, Redirect } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Timeline from './pages/Timeline';
 import News from './pages/News';
 import Portfolio from './pages/Portfolio';
@@ -24,24 +23,22 @@ const navConfig = [
 class Routes extends React.Component {
   public render() {
     return (
-        <HashRouter>
-          <React.Fragment>
-            <Navigation routes={navConfig}/>
-            <Switch>
-              {/* <Route exact path='/' component={Login} /> */}
-              <Route exact path='/' render={() => (
-                <Redirect to={URLS.News} />
-              )}/>
-              <Route path={URLS.News} component={News} />
-              <Route path={URLS.Timeline} component={Timeline} />
-              <Route path={URLS.Portfolio} component={Portfolio} />
-              <Route path={URLS.PredictiveCreditScore} component={PredictiveCreditScore} />
-              <Route component={() => <div>Not Found</div>} />
-            </Switch>
-          </React.Fragment>
-        </HashRouter>
+      <React.Fragment>
+        <Navigation routes={navConfig}/>
+        <Switch>
+          {/* <Route exact path='/' component={Login} /> */}
+          <Route exact path='/' render={() => (
+            <Redirect to={URLS.News} />
+          )}/>
+          <Route path={URLS.News} component={News} />
+          <Route path={URLS.Timeline} component={Timeline} />
+          <Route path={URLS.Portfolio} component={Portfolio} />
+          <Route path={URLS.PredictiveCreditScore} component={PredictiveCreditScore} />
+          <Route component={() => <div>Not Found</div>} />
+        </Switch>
+      </React.Fragment>
     );
   }
 }
 
-export default hot(module)(Routes);
+export default Routes;

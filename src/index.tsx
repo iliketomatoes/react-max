@@ -1,20 +1,30 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
-import rootReducer from './reducers';
+import { createHashHistory } from 'history';
+import configureStore, { ApplicationState } from './store';
 import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
 
-const initialState = {
-  enthusiasmLevel: 3,
-  languageName: 'English',
+const history = createHashHistory();
+
+const initialState: ApplicationState  = {
+  panes: {
+    visiblePanes: 1
+  }
 };
 
-const store = createStore(rootReducer, initialState);
+const store = configureStore(history, initialState);
+
+// Log the initial state
+console.log(store.getState());
+​
+// Every time the state changes, log it
+// Note that subscribe() returns a function for unregistering the listener
+store.subscribe(() => console.log(store.getState()) );
 
 // Render the app
 render(
-  <Main store={store} />,
+  <Main store={store} history={history} />,
   document.getElementById('root') as HTMLElement
 );
 

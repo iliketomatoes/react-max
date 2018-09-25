@@ -8,19 +8,6 @@ const styles = {
     padding: '80px 0 40px',
     width: '100%'
   },
-  paneToggle: {
-    background: '#ffffff',
-    border: '1px solid #ccc',
-    borderRadius: '2px',
-    display: 'inline-block',
-    marginLeft: '2px',
-    padding: '4px'
-  },
-  paneToggleOption: {
-    height: '24px',
-    marginRight: '2px',
-    width: '24px'
-  },
   paneContainer: {
     display: 'grid',
     flex: '1 0 auto',
