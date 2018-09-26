@@ -8,7 +8,12 @@ const styles = ({ spacing }: Theme) => createStyles({
     margin: '0 0 20px'
   },
   formControl: {
-    margin: spacing.unit,
+    margin: `${spacing.unit}px auto`,
+  },
+  button: {
+    float: 'right',
+    marginTop: spacing.unit * 2,
+    marginLeft: 'auto',
   },
 });
 
