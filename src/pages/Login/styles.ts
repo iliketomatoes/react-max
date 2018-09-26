@@ -1,12 +1,20 @@
-import { createStyles } from '@material-ui/core';
+import { createStyles, Theme } from '@material-ui/core';
 
-const styles = createStyles({
+const styles = ({ palette, spacing }: Theme) => createStyles({
   root: {
     display: 'block',
     height: '100vh',
     width: '100%',
     overflow: 'auto',
     position: 'relative'
+  },
+  grid: {
+    height: '100%'
+  },
+  card: {
+    minWidth: 280,
+    margin: spacing.unit * 2,
+    padding: `20px 16px`
   },
   imgCtr: {
     position: 'absolute',
