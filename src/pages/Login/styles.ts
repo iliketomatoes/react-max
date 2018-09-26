@@ -14,7 +14,8 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
   card: {
     minWidth: 280,
     margin: spacing.unit * 2,
-    padding: `20px 16px`
+    padding: `20px`,
+    zIndex: 10
   },
   imgCtr: {
     position: 'absolute',

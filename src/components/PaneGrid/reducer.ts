@@ -7,7 +7,7 @@ const initialState: PaneGridState = {
   visiblePanes: 1
 };
 
-const reducer: Reducer<PaneGridState> = (state = initialState, action): PaneGridState => {
+export const paneGridReducer: Reducer<PaneGridState> = (state = initialState, action): PaneGridState => {
   switch (action.type) {
     case PaneGridActionTypes.TOGGLE_VIEW: {
       return { ...state, visiblePanes: action.payload };
@@ -17,5 +17,3 @@ const reducer: Reducer<PaneGridState> = (state = initialState, action): PaneGrid
     }
   }
 };
-
-export { reducer as paneGridReducer };

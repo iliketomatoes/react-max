@@ -3,7 +3,7 @@ import { WithStyles, withStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import styles from './styles';
-import LoginForm from '../../components/LoginForm';
+import LoginForm from '../../components/LoginForm/pure';
 import background from '../../static/images/login-page.jpg';
 import background2x from '../../static/images/login-page_2x.jpg';
 
@@ -24,11 +24,9 @@ class Login extends React.Component<WithStyles<typeof styles>> {
         justify='center'
         alignItems='center'
         className={classes.grid}>
-          <div style={{zIndex: 10}}>
-            <Card className={classes.card}>
-              <LoginForm />
-            </Card>
-          </div>
+          <Card className={classes.card}>
+            <LoginForm />
+          </Card>
         </Grid>
       </div>
     );
