@@ -3,13 +3,11 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router';
-import { ApplicationState } from './store';
+import { ApplicationState } from './reducers';
 import Routes from './routes';
 import { History } from 'history';
 import { MuiThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ApolloProvider } from 'react-apollo';
-import graphQLClient from './graphQLClient';
 import theme from './theme';
 
 // Separate props from state and props from dispatch to their own interfaces.
@@ -35,16 +33,14 @@ class Main extends React.Component<AllProps> {
     const { store, history } = this.props;
 
     return (
-      <ApolloProvider client={graphQLClient}>
-        <Provider store={store}>
-          <ConnectedRouter history={history}>
-            <MuiThemeProvider theme={theme}>
-              <CssBaseline />
-              <Routes />
-            </MuiThemeProvider>
-          </ConnectedRouter>
-        </Provider>
-      </ApolloProvider>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <Routes />
+          </MuiThemeProvider>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }

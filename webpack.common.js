@@ -12,7 +12,7 @@ module.exports = {
     publicPath: '',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js', '.mjs', '.json'],
+    extensions: ['ts','.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js', '.mjs', '.json'],
   },
   module: {
     rules: [

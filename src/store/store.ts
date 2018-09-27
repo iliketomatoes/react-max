@@ -14,26 +14,30 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { History } from 'history';
 
 // Import the state interface and our combined reducers/epics.
-import { ApplicationState, rootReducer } from './root-reducer';
+import rootReducer, { ApplicationState } from '../reducers';
 import { rootEpic } from './root-epic';
-
-const epicMiddleware = createEpicMiddleware();
 
 export default function configureStore(
   history: History,
   initialState: ApplicationState
 ): Store<ApplicationState> {
+
   // create the composing function for our middlewares
   const composeEnhancers = composeWithDevTools({});
-  // create the redux-saga middleware
-  // const sagaMiddleware = createSagaMiddleware()
+
+  // create the redux-observable middleware
+  const epicMiddleware = createEpicMiddleware();
+
+  // configure middlewares
+  const middlewares = [routerMiddleware(history), epicMiddleware];
 
   // We'll create our store with the combined reducers/sagas, and the initial Redux state that
   // we'll be passing from our entry point.
   const store = createStore(
     connectRouter(history)(rootReducer),
     initialState,
-    composeEnhancers(applyMiddleware(routerMiddleware(history)), applyMiddleware(epicMiddleware)),
+    // composeEnhancers(applyMiddleware(...middlewares)),
+    composeEnhancers(applyMiddleware(middlewares[0]))
   );
 
   // Don't forget to run the root epic, and return the store object.
