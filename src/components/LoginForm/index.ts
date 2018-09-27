@@ -1,4 +1,1 @@
-export * from './types';
-export * from './reducer';
-
-export { default } from './pure';
+export { default } from './connected';
