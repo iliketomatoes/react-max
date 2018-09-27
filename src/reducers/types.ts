@@ -1,10 +1,16 @@
-export type VisiblePanes = 1 | 2 | 3;
+import {VisiblePanes} from '../models';
 
-export interface PanesStateToProps {
+export interface AuthState {
+  isPinging: boolean;
+  isUserAuthenticated: boolean;
+}
+
+export interface PanesState {
   visiblePanes: VisiblePanes;
 }
 
+// Application global state
 export interface ApplicationState {
-  panes: PanesStateToProps;
+  panes: PanesState;
+  auth: AuthState;
 }
-

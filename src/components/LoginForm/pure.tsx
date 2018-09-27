@@ -5,25 +5,29 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
-import * as actions from './actions';
 import styles from './styles';
-import { LoginFormState, LoginFormProps } from './types';
+import { ping } from '../../actions';
+import { AuthState } from '../../reducers';
 
-interface MappedDispatchProps {
-  ping: typeof actions.ping;
+export interface LoginFormDispatchToProps {
+  ping: typeof ping;
 }
 
-type Props = MappedDispatchProps & LoginFormProps & WithStyles<typeof styles>;
+type allProps = LoginFormDispatchToProps & AuthState & WithStyles<typeof styles>;
 
-class LoginForm extends React.Component<Props> {
+class LoginForm extends React.Component<allProps> {
 
-  state: LoginFormState = {
+  state = {
     usernameLabel: 'Username',
     passwordLabel: 'Password',
     errorMessage: '',
     name: '',
     password: ''
   };
+
+  componentDidMount() {
+    console.log(this.context);
+  }
 
   handleChange = (event: React.SyntheticEvent) => {
     let target = event.target as HTMLInputElement;

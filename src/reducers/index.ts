@@ -1,8 +1,11 @@
 import { combineReducers, Dispatch, Action, AnyAction } from 'redux';
 import { ApplicationState } from './types';
-import paneGridReducer from './panes';
+import { panesReducer } from './panes';
+import { authReducer } from './auth';
 
 export * from './types';
+export { initialPanesState } from './panes';
+export { initialAuthState } from './auth';
 
 // Additional props for connected React components. This prop is passed by default with `connect()`
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -10,7 +13,8 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 }
 
 const rootReducer = combineReducers<ApplicationState>({
-  panes: paneGridReducer
+  panes: panesReducer,
+  auth: authReducer
 });
 
 export default rootReducer;

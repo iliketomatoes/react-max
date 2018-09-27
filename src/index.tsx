@@ -2,19 +2,15 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { createHashHistory } from 'history';
 import configureStore from './store';
-import { ApplicationState } from './reducers';
+import { ApplicationState, initialAuthState, initialPanesState } from './reducers';
 import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createHashHistory();
 
 const initialState: ApplicationState  = {
-  panes: {
-    visiblePanes: 1
-  },
-  // auth: {
-  //   isPinging: false
-  // }
+  panes: initialPanesState,
+  auth: initialAuthState
 };
 
 const store = configureStore(history, initialState);

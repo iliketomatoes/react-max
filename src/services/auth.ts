@@ -1,3 +1,3 @@
 export function isUserAuthenticated() {
-  return true;
+  return false;
 }

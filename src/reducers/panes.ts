@@ -1,13 +1,13 @@
 import { Reducer } from 'redux';
 
-import { PanesStateToProps } from './types';
+import { PanesState } from './types';
 import { ActionTypes } from '../actions';
 
-const initialState: PanesStateToProps = {
+export const initialPanesState: PanesState = {
   visiblePanes: 1
 };
 
-const paneGridReducer: Reducer<typeof initialState> = (state = initialState, action): typeof initialState => {
+export const panesReducer: Reducer<PanesState> = (state = initialPanesState, action): PanesState => {
   switch (action.type) {
     case ActionTypes.TOGGLE_VIEW: {
       return { ...state, visiblePanes: action.payload };
@@ -17,5 +17,3 @@ const paneGridReducer: Reducer<typeof initialState> = (state = initialState, act
     }
   }
 };
-
-export default paneGridReducer;

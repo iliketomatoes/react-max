@@ -14,8 +14,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { History } from 'history';
 
 // Import the state interface and our combined reducers/epics.
-import rootReducer, { ApplicationState } from '../reducers';
-import { rootEpic } from './root-epic';
+import rootReducer, { ApplicationState } from './reducers';
+import rootEpic from './epics';
 
 export default function configureStore(
   history: History,
@@ -36,8 +36,7 @@ export default function configureStore(
   const store = createStore(
     connectRouter(history)(rootReducer),
     initialState,
-    // composeEnhancers(applyMiddleware(...middlewares)),
-    composeEnhancers(applyMiddleware(middlewares[0]))
+    composeEnhancers(applyMiddleware(...middlewares))
   );
 
   // Don't forget to run the root epic, and return the store object.
