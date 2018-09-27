@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PaneGrid from '../../components/PaneGrid';
 import Pane from '../../components/Pane';
-import StarWars from '../../components/StarWars';
 
 interface NewsProps {}
 
@@ -28,7 +27,6 @@ class News extends React.Component<NewsProps> {
         <Pane categories={firstPane.categories} />
         <Pane categories={secondPane.categories} />
         <Pane categories={thirdPane.categories} />
-        <StarWars></StarWars>
       </PaneGrid>
     );
   }

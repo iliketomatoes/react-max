@@ -1,6 +1,11 @@
 import { createMuiTheme } from '@material-ui/core';
 
-// TODO Use these SCSS variables in the theme
+/*
+ * TODO Use these SCSS variables in the theme
+ * See this for properties which can be edited in the theme object
+ * https://material-ui.com/customization/default-theme/
+ */
+
 // $white: #fff;
 // $black: #000;
 
@@ -27,11 +32,12 @@ import { createMuiTheme } from '@material-ui/core';
 // $keyline-dark: 1px solid $blue-grey2;
 const borderRadius = 4;
 
-// $wrapper-width: 1600px;
-
 // $timing-fast: .25s;
 // $timing-medium: .5s ease-in-out;
 // $timing-slow: 1s ease-in-out;
+
+// Exported properties
+export const wrapperMaxWidth = 1600;
 
 const theme = createMuiTheme({
   shape: {

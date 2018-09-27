@@ -1,17 +1,17 @@
-import { connect } from 'react-redux';
-import LoginForm from './pure';
-import * as actions from './actions';
-import { LoginFormProps } from './types';
-import { ApplicationState } from '../../store';
+// import { connect } from 'react-redux';
+// import LoginForm from './pure';
+// import * as actions from './actions';
+// import { LoginFormProps } from './types';
+// import { ApplicationState } from '../../reducers';
 
-let mapStateToProps = ({ auth }: ApplicationState): LoginFormProps => (
-  {
-    isPinging: auth.isPinging,
-  }
-);
+// let mapStateToProps = ({ auth }: ApplicationState): LoginFormProps => (
+//   {
+//     isPinging: auth.isPinging,
+//   }
+// );
 
-let mapDispatchToProps = {
-  ping: actions.ping,
-};
+// let mapDispatchToProps = {
+//   ping: actions.ping,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

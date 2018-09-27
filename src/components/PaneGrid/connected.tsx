@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PaneGrid from './pure';
-import * as actions from './actions';
-import { ApplicationState } from '../../store';
+import { toggleView } from '../../actions';
+import { ApplicationState } from '../../reducers';
 
 let mapStateToProps = ({ panes }: ApplicationState) => (
   {
@@ -10,7 +10,7 @@ let mapStateToProps = ({ panes }: ApplicationState) => (
 );
 
 let mapDispatchToProps = {
-    onToggleView: actions.toggleView,
+    onToggleView: toggleView,
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaneGrid);

@@ -7,7 +7,7 @@ const initialState: LoginFormProps = {
   isPinging: false
 };
 
-export const paneGridReducer: Reducer<LoginFormProps> = (state = initialState, action): LoginFormProps => {
+export const loginFormReducer: Reducer<LoginFormProps> = (state = initialState, action): LoginFormProps => {
   switch (action.type) {
     case LoginFormActionTypes.PING: {
       return { ...state, isPinging: true };

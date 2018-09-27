@@ -6,9 +6,9 @@ import News from './pages/News';
 import Portfolio from './pages/Portfolio';
 import PredictiveCreditScore from './pages/PredictiveCreditScore';
 import Navigation from './components/Navigation';
-import { isUserAuthenticated } from './utils/auth';
+import { isUserAuthenticated } from './services/auth';
 
-enum URLS {
+export enum URLS {
   Login = '/login',
   News = '/news',
   Timeline = '/timeline',
