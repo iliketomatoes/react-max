@@ -3,11 +3,11 @@ import { WithStyles, withStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import PaneToggle from '../PaneToggle';
 import { PanesState } from '../../reducers';
-import { toggleView } from '../../actions';
+import { panes } from '../../actions';
 import styles from './styles';
 
 export interface PaneGridDispatchToProps {
-  onToggleView: typeof toggleView;
+  onToggleView: typeof panes.toggleView;
 }
 
 type allProps = PaneGridDispatchToProps & PanesState & WithStyles<typeof styles>;

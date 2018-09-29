@@ -22,6 +22,7 @@ console.log(store.getState());
 // Note that subscribe() returns a function for unregistering the listener
 store.subscribe(() => console.log(store.getState()) );
 
+
 // Render the app
 render(
   <Main store={store} history={history} />,

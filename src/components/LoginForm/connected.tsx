@@ -1,17 +1,9 @@
 import { connect } from 'react-redux';
 import LoginForm, { LoginFormDispatchToProps }  from './pure';
-import { ping } from '../../actions';
-import { ApplicationState, AuthState } from '../../reducers';
-
-let mapStateToProps = ({ auth }: ApplicationState): AuthState => (
-  {
-    isPinging: auth.isPinging,
-    isUserAuthenticated: auth.isPinging
-  }
-);
+import { auth } from '../../actions';
 
 let mapDispatchToProps: LoginFormDispatchToProps = {
-  ping: ping,
+  registerLogIn: auth.logIn,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

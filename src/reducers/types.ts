@@ -1,8 +1,7 @@
 import {VisiblePanes} from '../models';
 
 export interface AuthState {
-  isPinging: boolean;
-  isUserAuthenticated: boolean;
+  isAuthenticated: boolean;
 }
 
 export interface PanesState {

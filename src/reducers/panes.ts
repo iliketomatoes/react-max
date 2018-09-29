@@ -9,7 +9,7 @@ export const initialPanesState: PanesState = {
 
 export const panesReducer: Reducer<PanesState> = (state = initialPanesState, action): PanesState => {
   switch (action.type) {
-    case ActionTypes.TOGGLE_VIEW: {
+    case ActionTypes.panes.TOGGLE_VIEW: {
       return { ...state, visiblePanes: action.payload };
     }
     default: {
