@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { WithStyles, withStyles } from '@material-ui/core';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { toggleView } from '../../actions';
+import { panes } from '../../actions';
 import styles from './styles';
 
 export interface PaneToggleProps extends WithStyles<typeof styles> {
-  onToggleView: typeof toggleView;
+  onToggleView: typeof panes.toggleView;
 }
 
 class PaneToggle extends React.Component<PaneToggleProps> {

@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router';
+import { UserProvider } from './UserContext';
 import { ApplicationState } from './reducers';
 import Routes from './routes';
 import { History } from 'history';
@@ -34,12 +35,14 @@ class Main extends React.Component<AllProps> {
 
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes />
-          </MuiThemeProvider>
-        </ConnectedRouter>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <UserProvider>
+            <ConnectedRouter history={history}>
+              <Routes />
+            </ConnectedRouter>
+          </UserProvider>
+        </MuiThemeProvider>
       </Provider>
     );
   }

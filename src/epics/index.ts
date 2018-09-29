@@ -1,9 +1,9 @@
 import { combineEpics } from 'redux-observable';
 
-import { pingEpic } from './auth';
+// import { logInEpic } from './auth';
 
 const rootEpic = combineEpics(
-  pingEpic,
+  // logInEpic
 );
 
 export default rootEpic;

@@ -4,17 +4,18 @@ import { ActionTypes } from '../actions';
 
 // Type-safe initialState!
 export const initialAuthState: AuthState = {
-  isPinging: false,
-  isUserAuthenticated: false
+  isAuthenticated: false
 };
 
 export const authReducer: Reducer<AuthState> = (state = initialAuthState, action): AuthState => {
   switch (action.type) {
-    case ActionTypes.PING: {
-      return { ...state, isPinging: true };
+    case ActionTypes.auth.LOG_IN: {
+      console.log('log in');
+      return { ...state, isAuthenticated: true };
     }
-    case ActionTypes.PONG: {
-      return { ...state, isPinging: false };
+    case ActionTypes.auth.LOG_OUT: {
+      console.log('log out');
+      return { ...state, isAuthenticated: false };
     }
     default: {
       return state;
