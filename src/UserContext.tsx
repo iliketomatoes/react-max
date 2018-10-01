@@ -1,16 +1,25 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { ApplicationState, AuthState } from './reducers';
+import { auth } from './actions';
+
+interface UserProviderProps extends Pick<AuthState, 'isAuthenticated'> {
+  logOut: typeof auth.logOut;
+}
 
 const UserContext = React.createContext({});
 
-class UserPure extends React.Component<AuthState> {
+class UserPure extends React.Component<UserProviderProps> {
 
   render() {
+
+    const { isAuthenticated, logOut} = this.props;
+
     return (
       <UserContext.Provider
         value={{
-          isAuthenticated: this.props.isAuthenticated
+          isAuthenticated: isAuthenticated,
+          logOut: logOut,
         }}
       >
         {this.props.children}
@@ -19,13 +28,17 @@ class UserPure extends React.Component<AuthState> {
   }
 }
 
-let mapStateToProps = ({ auth }: ApplicationState): Partial<AuthState> => (
+let mapStateToProps = ({ auth }: ApplicationState): Pick<AuthState, 'isAuthenticated'> => (
   {
-    isAuthenticated: auth.isAuthenticated
+    isAuthenticated: auth.isAuthenticated,
   }
 );
 
-const UserProvider =  connect(mapStateToProps, {})(UserPure);
+let mapDispatchToProps = {
+  logOut: auth.logOut
+};
+
+const UserProvider = connect(mapStateToProps, mapDispatchToProps)(UserPure);
 const UserConsumer = UserContext.Consumer;
 
-export { UserProvider, UserConsumer };
+export { UserProvider, UserConsumer, UserProviderProps };
