@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
 import PaneGrid from './pure';
-import * as actions from './actions';
-import { ApplicationState } from '../../store';
+import { PaneGridDispatchToProps } from './pure';
+import { panes } from '../../actions';
+import { ApplicationState, PanesState } from '../../reducers';
 
-let mapStateToProps = ({ panes }: ApplicationState) => (
+let mapStateToProps = ({ panes }: ApplicationState): PanesState => (
   {
     visiblePanes: panes.visiblePanes,
   }
 );
 
-let mapDispatchToProps = {
-    onToggleView: actions.toggleView,
+let mapDispatchToProps: PaneGridDispatchToProps = {
+    onToggleView: panes.toggleView,
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaneGrid);

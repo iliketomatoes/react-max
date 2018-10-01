@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, RouteComponentProps, RouteProps } from 'react-router-dom';
+import { AuthState } from './reducers';
+import { UserConsumer } from './UserContext';
 import Timeline from './pages/Timeline';
+import Login from './pages/Login';
 import News from './pages/News';
 import Portfolio from './pages/Portfolio';
 import PredictiveCreditScore from './pages/PredictiveCreditScore';
 import Navigation from './components/Navigation';
 
-enum URLS {
+export enum URLS {
+  Login = '/login',
   News = '/news',
   Timeline = '/timeline',
   Portfolio = '/portfolio',
@@ -20,21 +24,48 @@ const navConfig = [
   { label: 'Predictive CS', url: URLS.PredictiveCreditScore },
 ];
 
+const PrivateRoute = ({ component, ...rest }: RouteProps) => {
+  if (!component) {
+    throw Error('component is undefined');
+  }
+
+   // JSX Elements have to be uppercase.
+  const Component = component;
+
+  const render = (props: RouteComponentProps<any>): React.ReactNode => {
+    return (
+      <UserConsumer>{
+        ({ isAuthenticated }: AuthState ) => (
+          <Route
+            render={
+              props =>
+                isAuthenticated
+                ? <Component {...props} />
+                : <Redirect to={{ pathname: URLS.Login}} />
+            }
+            {...rest} />
+        )}
+      </UserConsumer>
+      );
+  };
+
+  return (<Route {...rest} render={render} />);
+};
+
 class Routes extends React.Component {
   public render() {
+
     return (
       <React.Fragment>
         <Navigation routes={navConfig}/>
         <Switch>
-          {/* <Route exact path='/' component={Login} /> */}
-          <Route exact path='/' render={() => (
-            <Redirect to={URLS.News} />
-          )}/>
-          <Route path={URLS.News} component={News} />
-          <Route path={URLS.Timeline} component={Timeline} />
-          <Route path={URLS.Portfolio} component={Portfolio} />
-          <Route path={URLS.PredictiveCreditScore} component={PredictiveCreditScore} />
-          <Route component={() => <div>Not Found</div>} />
+          <Route path={URLS.Login} component={Login} />
+          <Route exact path='/' render={() => <Redirect to={URLS.News} />} />
+          <PrivateRoute exact path={URLS.News} component={News}/>
+          <PrivateRoute exact path={URLS.Timeline} component={Timeline} />
+          <PrivateRoute exact path={URLS.Portfolio} component={Portfolio} />
+          <PrivateRoute exact path={URLS.PredictiveCreditScore} component={PredictiveCreditScore} />
+          <PrivateRoute component={() => <div>Not Found</div>} />
         </Switch>
       </React.Fragment>
     );

@@ -3,11 +3,13 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router';
-import { ApplicationState } from './store';
+import { UserProvider } from './UserContext';
+import { ApplicationState } from './reducers';
 import Routes from './routes';
 import { History } from 'history';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { MuiThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from './theme';
 
 // Separate props from state and props from dispatch to their own interfaces.
 // interface PropsFromState {
@@ -26,18 +28,6 @@ interface OwnProps {
 // Create an intersection type of the component props and our Redux props.
 type AllProps = PropsFromDispatch & OwnProps;
 
-const theme = createMuiTheme({
-  shape: {
-    borderRadius: 2,
-  },
-   typography: {
-    'fontFamily': '\'Source Sans Pro\', \'Helvetica\', \'Arial\', sans-serif',
-    'fontWeightLight': 300,
-    'fontWeightMedium': 500,
-    'fontWeightRegular': 400,
-   }
-});
-
 class Main extends React.Component<AllProps> {
   public render() {
 
@@ -45,12 +35,14 @@ class Main extends React.Component<AllProps> {
 
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes />
-          </MuiThemeProvider>
-        </ConnectedRouter>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <UserProvider>
+            <ConnectedRouter history={history}>
+              <Routes />
+            </ConnectedRouter>
+          </UserProvider>
+        </MuiThemeProvider>
       </Provider>
     );
   }

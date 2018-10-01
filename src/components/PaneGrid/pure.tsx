@@ -2,19 +2,17 @@ import * as React from 'react';
 import { WithStyles, withStyles } from '@material-ui/core';
 import classNames from 'classnames';
 import PaneToggle from '../PaneToggle';
-import { PaneGridState } from './types';
-import * as paneGridActions from './actions';
+import { PanesState } from '../../reducers';
+import { panes } from '../../actions';
 import styles from './styles';
 
-// Props passed from either:
-// 1 - A parent component
-// 2 - from mapStateToProps
-// 3 - from mapDispatchToProps
-interface PaneGridProps extends PaneGridState {
-  onToggleView: typeof paneGridActions.toggleView;
+export interface PaneGridDispatchToProps {
+  onToggleView: typeof panes.toggleView;
 }
 
-class PaneGrid extends React.Component<PaneGridProps & WithStyles<typeof styles>> {
+type allProps = PaneGridDispatchToProps & PanesState & WithStyles<typeof styles>;
+
+class PaneGrid extends React.Component<allProps> {
 
   public render() {
 
