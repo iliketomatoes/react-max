@@ -13,7 +13,7 @@ const initialState: ApplicationState  = {
   auth: initialAuthState
 };
 
-const store = configureStore(history, initialState);
+export const store = configureStore(history, initialState);
 
 // Log the initial state
 console.log(store.getState());

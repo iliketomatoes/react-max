@@ -7,6 +7,9 @@ import { ApplicationState, PanesState } from '../../reducers';
 let mapStateToProps = ({ panes }: ApplicationState): PanesState => (
   {
     visiblePanes: panes.visiblePanes,
+    firstPane: panes.firstPane,
+    secondPane: panes.secondPane,
+    thirdPane: panes.thirdPane
   }
 );
 

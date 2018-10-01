@@ -19,7 +19,7 @@ class UserPure extends React.Component<AuthState> {
   }
 }
 
-let mapStateToProps = ({ auth }: ApplicationState): AuthState => (
+let mapStateToProps = ({ auth }: ApplicationState): Partial<AuthState> => (
   {
     isAuthenticated: auth.isAuthenticated
   }

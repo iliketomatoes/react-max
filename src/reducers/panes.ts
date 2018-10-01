@@ -4,7 +4,10 @@ import { PanesState } from './types';
 import { ActionTypes } from '../actions';
 
 export const initialPanesState: PanesState = {
-  visiblePanes: 1
+  visiblePanes: 1,
+  firstPane: null,
+  secondPane: null,
+  thirdPane: null
 };
 
 export const panesReducer: Reducer<PanesState> = (state = initialPanesState, action): PanesState => {

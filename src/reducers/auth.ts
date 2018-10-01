@@ -4,17 +4,18 @@ import { ActionTypes } from '../actions';
 
 // Type-safe initialState!
 export const initialAuthState: AuthState = {
-  isAuthenticated: false
+  isAuthenticated: false,
+  user: {}
 };
 
 export const authReducer: Reducer<AuthState> = (state = initialAuthState, action): AuthState => {
   switch (action.type) {
     case ActionTypes.auth.LOG_IN: {
-      console.log('log in');
-      return { ...state, isAuthenticated: true };
+      return { ...state, isAuthenticated: true, user: {
+        email: action.payload
+      } };
     }
     case ActionTypes.auth.LOG_OUT: {
-      console.log('log out');
       return { ...state, isAuthenticated: false };
     }
     default: {
