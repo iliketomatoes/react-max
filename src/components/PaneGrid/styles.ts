@@ -1,25 +1,15 @@
-const styles = {
+import { createStyles } from '@material-ui/core';
+import { wrapperMaxWidth } from '../../theme';
+
+const styles = createStyles({
   root: {
     display: 'flex',
     flexFlow: 'wrap',
     justifyContent: 'flex-end',
     margin: '0 auto',
-    maxWidth: '1680px',
+    maxWidth: wrapperMaxWidth,
     padding: '80px 0 40px',
     width: '100%'
-  },
-  paneToggle: {
-    background: '#ffffff',
-    border: '1px solid #ccc',
-    borderRadius: '2px',
-    display: 'inline-block',
-    marginLeft: '2px',
-    padding: '4px'
-  },
-  paneToggleOption: {
-    height: '24px',
-    marginRight: '2px',
-    width: '24px'
   },
   paneContainer: {
     display: 'grid',
@@ -29,16 +19,16 @@ const styles = {
   },
   onePane: {
     gridTemplateColumns: 'repeat(1, 1fr)',
-    maxWidth: '820px'
+    maxWidth: wrapperMaxWidth - 550
   },
   twoPanes: {
     gridTemplateColumns: 'repeat(2, 1fr)',
-    maxWidth: '1280px'
+    maxWidth: wrapperMaxWidth - 320
   },
   threePanes: {
     gridTemplateColumns: 'repeat(3, 1fr)',
-    maxWidth: '1680px'
+    maxWidth: wrapperMaxWidth
   }
-};
+});
 
 export default styles;

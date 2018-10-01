@@ -1,40 +1,51 @@
 import * as React from 'react';
-import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { StoreState } from './types';
+import { Store } from 'redux';
+import { hot } from 'react-hot-loader';
+import { ConnectedRouter } from 'connected-react-router';
+import { UserProvider } from './UserContext';
+import { ApplicationState } from './reducers';
 import Routes from './routes';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { History } from 'history';
+import { MuiThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from './theme';
 
-interface OwnProps {
-  store: Store<StoreState>;
+// Separate props from state and props from dispatch to their own interfaces.
+// interface PropsFromState {
+//   theme: ThemeColors
+// }
+
+interface PropsFromDispatch {
+  [key: string]: any;
 }
 
-const theme = createMuiTheme({
-  shape: {
-    borderRadius: 2,
-  },
-   typography: {
-    'fontFamily': '\'Source Sans Pro\', \'Helvetica\', \'Arial\', sans-serif',
-    'fontWeightLight': 300,
-    'fontWeightMedium': 500,
-    'fontWeightRegular': 400,
-   }
-});
+interface OwnProps {
+  store: Store<ApplicationState>;
+  history: History;
+}
 
-class Main extends React.Component<OwnProps> {
+// Create an intersection type of the component props and our Redux props.
+type AllProps = PropsFromDispatch & OwnProps;
+
+class Main extends React.Component<AllProps> {
   public render() {
+
+    const { store, history } = this.props;
+
     return (
-      <MuiThemeProvider theme={theme}>
-        <Provider store={this.props.store}>
-          <React.Fragment>
-            <CssBaseline />
-            <Routes />
-          </React.Fragment>
-        </Provider>
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <UserProvider>
+            <ConnectedRouter history={history}>
+              <Routes />
+            </ConnectedRouter>
+          </UserProvider>
+        </MuiThemeProvider>
+      </Provider>
     );
   }
 }
 
-export default Main;
+export default hot(module)(Main);

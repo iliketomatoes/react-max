@@ -12,10 +12,15 @@ module.exports = {
     publicPath: '',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    extensions: ['ts','.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js', '.mjs', '.json'],
   },
   module: {
     rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto',
+      },
       {
         test: /\.js$/,
         use: ['babel-loader', 'source-map-loader'],
@@ -26,6 +31,12 @@ module.exports = {
         use: ['babel-loader', 'awesome-typescript-loader'],
       },
       {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader'
+          ]
+      },
+      {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
@@ -34,7 +45,7 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
+              localIdentName: '[name]_[local]_[hash:base64]',
             }
           },
         ]
