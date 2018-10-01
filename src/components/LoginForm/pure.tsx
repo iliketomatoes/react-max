@@ -3,13 +3,14 @@ import { RouteComponentProps } from 'react-router';
 import { WithStyles, withStyles } from '@material-ui/core';
 import { withRouter } from 'react-router';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import styles from './styles';
 import { URLS } from '../../routes';
 import { auth } from '../../actions';
+import { loginApi } from '../../services/api';
 
 export interface LoginFormDispatchToProps {
   registerLogIn: typeof auth.logIn;
@@ -20,11 +21,12 @@ type allProps = LoginFormDispatchToProps & WithStyles<typeof styles> & RouteComp
 class LoginForm extends React.Component<allProps> {
 
   state = {
-    usernameLabel: 'Username',
+    emailLabel: 'E-mail',
     passwordLabel: 'Password',
     errorMessage: '',
-    name: '',
+    email: '',
     password: '',
+    isLoading: false,
   };
 
   handleChange = (event: React.SyntheticEvent, key: string) => {
@@ -33,46 +35,67 @@ class LoginForm extends React.Component<allProps> {
   }
 
   handleSubmit = () => {
-    // TODO
-    // AJAX Call for authentication
 
-    this.props.registerLogIn({
-      name: this.state.name,
-      password: this.state.password
+    const { email, password } = this.state;
+
+    this.setState({ errorMessage: '' });
+
+    const loginRequest = loginApi('/login', {
+      email,
+      password,
     });
 
-    // Redirect to the homepage
-    this.props.history.push(URLS.News);
+    loginRequest.subscribe({
+      next: (isAuthenticated) => {
+
+        if (isAuthenticated) {
+          this.props.registerLogIn({
+            email
+          });
+
+          // Redirect to the homepage
+          this.props.history.push(URLS.News);
+
+        } else {
+          this.setState({ errorMessage: 'The credentials you submitted are not valid.' });
+        }
+      },
+      error: (err) => {
+        this.setState({ errorMessage: 'There was an error in your request' });
+      }
+    });
+
   }
 
   public render() {
     const { classes } = this.props;
 
     const {
-      usernameLabel,
+      emailLabel,
       passwordLabel,
-      name,
+      email,
       password,
       errorMessage
     } = this.state;
 
-    const disabledSubmitBtn = name === '' || password === '' ? true : false;
+    const disabledSubmitBtn = email === '' || password === '' ? true : false;
 
     return (
       <form className={classes.root} noValidate>
         <FormControl className={classes.formControl} error={!!errorMessage} fullWidth={true}>
-          <InputLabel htmlFor='username'>{usernameLabel}</InputLabel>
-          <Input id='username' value={name} onChange={(e) => this.handleChange(e, 'name')} />
-          {!!errorMessage && <FormHelperText id='component-error-text'>Error</FormHelperText>}
+          <InputLabel htmlFor='email'>{emailLabel}</InputLabel>
+          <Input id='email' value={email} onChange={(e) => this.handleChange(e, 'email')} />
         </FormControl>
         <FormControl className={classes.formControl} error={!!errorMessage} fullWidth={true}>
           <InputLabel htmlFor='password'>{passwordLabel}</InputLabel>
           <Input id='password' value={password} onChange={(e) => this.handleChange(e, 'password')} type='password' />
-          {!!errorMessage && <FormHelperText id='component-error-text'>Error</FormHelperText>}
         </FormControl>
         <Button variant='contained' size='medium' color='primary' disabled={disabledSubmitBtn} className={classes.button} onClick={this.handleSubmit}>
           Sign In
         </Button>
+        <div className={classes.errorMsg}>
+          <Typography color='error'>{errorMessage}</Typography>
+        </div>
       </form>
     );
   }

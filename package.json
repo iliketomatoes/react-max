@@ -15,6 +15,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines" : {
+    "node" : ">=8.9.4",
+    "npm" : "^6.1.0"
+  },
   "sideEffects": [
     "*.css"
   ],
