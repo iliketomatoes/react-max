@@ -9,4 +9,12 @@ export namespace ActionTypes {
     TOGGLE_VIEW = '@@pane/TOGGLE_VIEW',
   }
 
+  export const enum api {
+    PENDING = '@@api/PENDING',
+    FULFILLED = '@@api/FULFILLED',
+    REJECTED = '@@api/REJECTED',
+    RESET = '@@api/RESET',
+    RESETALL = '@@api/RESETALL'
+  }
+
 }

@@ -1,4 +1,6 @@
-// import { ajax } from 'rxjs/ajax';
+import { ajax, AjaxResponse } from 'rxjs/ajax';
+import browserStorage from './browserStorage';
+
 import { Observable, Observer } from 'rxjs';
 import { LoginRequest } from '../models';
 import { delay } from 'rxjs/operators';
@@ -15,11 +17,11 @@ import { delay } from 'rxjs/operators';
 //   catchError(err => of([]))
 // );
 
-const requestApi = <T>(endpoint: string, payload: T, callBack?: Function): Observable<string> => {
-  return Observable.create((observer: Observer<string>) => {
-    observer.error('error');
-  });
-};
+// const requestApi = <T>(endpoint: string, payload: T, callBack?: Function): Observable<string> => {
+//   return Observable.create((observer: Observer<string>) => {
+//     observer.error('error');
+//   });
+// };
 
 export const loginApi = (endpoint: string, payload: LoginRequest, callBack?: Function): Observable<boolean> => {
 
@@ -47,7 +49,22 @@ export const loginApi = (endpoint: string, payload: LoginRequest, callBack?: Fun
   return login$.pipe(delay(500));
 };
 
-export default requestApi;
+// call
+export const callApi = ({ endpoint = '', params = {}, method = 'get' } = {}): Promise<AjaxResponse> => {
+
+  const url = `/api/${endpoint}`;
+  const headers = browserStorage.get('isLoggedIn');
+
+  return ajax({
+    method,
+    url,
+    body: params,
+    headers: headers && { 'X-PA-AUTH-TOKEN': headers }
+  }).toPromise();
+
+};
+
+export default callApi;
 
 // // Usage:
 // apiData.subscribe({

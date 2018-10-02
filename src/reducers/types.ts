@@ -12,8 +12,17 @@ export interface PanesState {
   thirdPane: Pane | null;
 }
 
+export interface ApiState {
+  isPending: boolean;
+  isFulfilled: boolean;
+  isRejected: boolean;
+  data: any;
+  err: any;
+}
+
 // Application global state
 export interface ApplicationState {
   panes: PanesState;
   auth: AuthState;
+  api: ApiState;
 }

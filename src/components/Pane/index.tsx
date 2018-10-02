@@ -34,8 +34,8 @@ class PaneView extends React.Component<PaneProps> {
           {uiData.categories.join(',')}
         </Typography>
         <Paper elevation={1}>
-          {uiData.articles.map(article => {
-            return <PaneRow article={article}></PaneRow>;
+          {uiData.articles.map((article, index) => {
+            return <PaneRow key={index} article={article}></PaneRow>;
           })}
         </Paper>
       </div>
