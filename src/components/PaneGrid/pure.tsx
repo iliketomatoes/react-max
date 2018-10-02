@@ -26,15 +26,17 @@ class PaneGrid extends React.Component<allProps> {
 
     return (
       <div className={classes.root}>
-        <PaneToggle onToggleView={onToggleView}></PaneToggle>
+        <div className={classes.paneToggleContainer}>
+          <PaneToggle onToggleView={onToggleView}></PaneToggle>
+        </div>
         <div className={classNames(classes.paneContainer, {
           [classes.onePane]: visiblePanes === 1,
           [classes.twoPanes]: visiblePanes === 2,
-          [classes.threePanes]: visiblePanes > 2,
+          [classes.threePanes]: visiblePanes === 3,
         })}>
           <Pane data={firstPane} />
-          <Pane data={secondPane} />
-          <Pane data={thirdPane} />
+          {visiblePanes > 1 && <Pane data={secondPane} />}
+          {visiblePanes > 2 && <Pane data={thirdPane} />}
         </div>
       </div>
     );

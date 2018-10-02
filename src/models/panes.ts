@@ -1,10 +1,9 @@
+import { Article } from './article';
+
 export type VisiblePanes = 1 | 2 | 3;
 
-export interface Article {
-  title: string;
-}
-
 export interface Pane {
+  entity: string;
   categories: string[];
-  posts: Article[];
+  articles: Article[];
 }
