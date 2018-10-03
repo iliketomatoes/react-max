@@ -1,20 +1,23 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { createHashHistory } from 'history';
-import configureStore from './store';
-import { ApplicationState, initialAuthState, initialPanesState, defaultApiState } from './reducers';
+// import configureStore from './store';
+// import { ApplicationState, initialAuthState, initialPanesState, defaultApiState } from './reducers';
+
+import { store } from './modules/index';
+
 import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createHashHistory();
 
-const initialState: ApplicationState  = {
-  panes: initialPanesState,
-  auth: initialAuthState,
-  api: defaultApiState
-};
+// const initialState: ApplicationState  = {
+//   panes: initialPanesState,
+//   auth: initialAuthState,
+//   api: defaultApiState
+// };
 
-export const store = configureStore(history, initialState);
+// export const store = configureStore(history, initialState);
 
 // Log the initial state
 console.log(store.getState());
