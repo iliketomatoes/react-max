@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Timeline from './pages/Timeline';
 import Login from './pages/Login';
-import News from './pages/News';
+import Homepage from './modules/news/containers/Homepage';
 import Portfolio from './pages/Portfolio';
 import PredictiveCreditScore from './pages/PredictiveCreditScore';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -32,7 +32,7 @@ class Routes extends React.Component {
         <Switch>
           <Route path={URLS.Login} component={Login} />
           <Route exact path='/' render={() => <Redirect to={URLS.News} />} />
-          <ProtectedRoute exact path={URLS.News} component={News}/>
+          <ProtectedRoute exact path={URLS.News} component={Homepage}/>
           <ProtectedRoute exact path={URLS.Timeline} component={Timeline} />
           <ProtectedRoute exact path={URLS.Portfolio} component={Portfolio} />
           <ProtectedRoute exact path={URLS.PredictiveCreditScore} component={PredictiveCreditScore} />

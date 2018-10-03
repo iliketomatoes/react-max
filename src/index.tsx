@@ -4,7 +4,7 @@ import { createHashHistory } from 'history';
 // import configureStore from './store';
 // import { ApplicationState, initialAuthState, initialPanesState, defaultApiState } from './reducers';
 
-import { store } from './modules/index';
+import configureStore from './modules/index';
 
 import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
@@ -17,7 +17,7 @@ const history = createHashHistory();
 //   api: defaultApiState
 // };
 
-// export const store = configureStore(history, initialState);
+const store = configureStore(history);
 
 // Log the initial state
 console.log(store.getState());

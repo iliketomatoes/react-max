@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import styles from './styles';
-import { UserConsumer, UserProviderProps } from '../../UserContext';
+import { UserConsumer, UserProviderProps } from '../../contexts/UserContext';
 import NavLink from '../NavigationLink';
 
 interface NavProps extends WithStyles<typeof styles> {

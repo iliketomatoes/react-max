@@ -1,19 +1,17 @@
-import { createStore, combineReducers, compose, applyMiddleware, StoreEnhancer, Store } from 'redux';
+import { createStore, combineReducers, applyMiddleware, StoreEnhancer, Store } from 'redux';
 
 // We'll be using Redux Devtools. We can use the `composeWithDevTools()`
 // directive so we can pass our middleware along with it
 import { composeWithDevTools } from 'redux-devtools-extension';
-
-import { devToolsEnhancer } from 'redux-devtools-extension/logOnlyInProduction';
 import createSagaMiddleware from 'redux-saga';
-import { AnyAction } from 'typescript-fsa';
+// import { AnyAction } from 'typescript-fsa';
 import { History } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
 import rootSaga from './sagas';
 
 /* Import reducers from our modules */
-// import * as auth from './auth/reducer';
+import * as auth from './auth/reducer';
 import * as news from './news/reducer';
 
 // import { setConfig as setAuthConfig } from './auth/functions';
@@ -26,7 +24,7 @@ import * as news from './news/reducer';
  */
 export interface RootStoreState {
     readonly news: news.StoreState;
-    // readonly auth: auth.StoreState;
+    readonly auth: auth.StoreState;
 }
 
 export default function configureStore(
@@ -38,7 +36,7 @@ export default function configureStore(
    */
   const reducer = combineReducers<RootStoreState>({
     news: news.reducer,
-    // auth: auth.reducer,
+    auth: auth.reducer,
   });
 
   // create the composing function for our middlewares

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Props, Actions } from '../containers/News';
+import { Props, Actions } from '../containers/Homepage';
 import PaneGrid from './PaneGrid';
 
 /**

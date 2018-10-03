@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router';
-import { UserProvider } from './UserContext';
-import { ApplicationState } from './reducers';
+import { UserProvider } from './contexts/UserContext';
+import { RootStoreState } from './modules';
 import Routes from './routes';
 import { History } from 'history';
 import { MuiThemeProvider } from '@material-ui/core';
@@ -21,7 +21,7 @@ interface PropsFromDispatch {
 }
 
 interface OwnProps {
-  store: Store<ApplicationState>;
+  store: Store<RootStoreState>;
   history: History;
 }
 

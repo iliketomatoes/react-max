@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route, Redirect, RouteComponentProps, RouteProps } from 'react-router-dom';
-import { UserConsumer, UserProviderProps } from '../../UserContext';
+import { UserConsumer, UserProviderProps } from '../../contexts/UserContext';
 import { URLS } from '../../routes';
 
 const ProtectedRoute = ({ component, ...rest }: RouteProps) => {
