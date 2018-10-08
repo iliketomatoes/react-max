@@ -58,7 +58,7 @@ class Navigation extends React.Component<NavProps> {
               <MenuIcon />
             </IconButton>
             <Typography variant='title' color='inherit' className={classes.grow}>
-              AIG
+              Logo
             </Typography>
             {auth && (
               <div className={classes.navAuthSection}>

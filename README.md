@@ -1,4 +1,4 @@
-# AIG Intelligent Risk Management Dashboard
+# React demo app
 
 Front end application built with:
 
@@ -10,7 +10,7 @@ Front end application built with:
 ## Installation
 
 ```bash
-npm ci
+npm install
 ```
 
 ## Usage
@@ -26,8 +26,3 @@ npm ci
 ### Build for production
 
 `npm run build`
-
-
-### Deploying to AppEngine
-
-`gcloud app deploy`

@@ -35,7 +35,7 @@ export default function configureStore(
   // we'll be passing from our entry point.
   const store = createStore(
     connectRouter(history)(rootReducer),
-    initialState,
+    initialState, // TODO use persisted state from browserStorage to initialize the store
     composeEnhancers(applyMiddleware(...middlewares))
   );
 

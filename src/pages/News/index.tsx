@@ -14,7 +14,7 @@ class News extends React.Component<NewsProps> {
       categories: ['Telecommunication', 'Technology']
     },
     thirdPane: {
-      categories: ['Pharmaceutical', 'AIGPAR']
+      categories: ['Pharmaceutical', 'Avionics']
     }
   };
 

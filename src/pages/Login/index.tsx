@@ -17,7 +17,7 @@ class Login extends React.Component<WithStyles<typeof styles>> {
           <picture>
             <source media='(max-width: 640px)' srcSet={background} />
             <source media='(min-width: 641px)' srcSet={background2x} />
-            <img src={background} alt='AIG Login page' className={classes.imgEl}/>
+            <img src={background} alt='Login page' className={classes.imgEl}/>
           </picture>
         </div>
         <Grid container direction='row'

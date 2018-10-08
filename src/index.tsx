@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 const history = createHashHistory();
 
+// TODO use persisted state from browserStorage to initialize the store
 const initialState: ApplicationState  = {
   panes: initialPanesState,
   auth: initialAuthState
@@ -20,7 +21,12 @@ console.log(store.getState());
 ​
 // Every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
-store.subscribe(() => console.log(store.getState()) );
+
+// TODO Throttle subscribe callback call
+store.subscribe(() => {
+  // TODO save state in the local storage
+  console.log(store.getState());
+});
 
 // Render the app
 render(

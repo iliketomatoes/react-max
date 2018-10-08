@@ -20,11 +20,6 @@ class NavigationLink extends React.Component<NavLinkProps> {
         {this.props.children}
       </Button>
     );
-    // return (
-    //   <NavLink to={this.props.to} activeClassName='active'>
-    //     test
-    //   </NavLink>
-    // );
   }
 }
 
