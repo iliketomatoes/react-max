@@ -1,63 +1,106 @@
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router';
 import { WithStyles, withStyles } from '@material-ui/core';
+import { withRouter } from 'react-router';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import styles from './styles';
-import { ping } from '../../actions';
-import { AuthState } from '../../reducers';
+import { URLS } from '../../routes';
+import { auth } from '../../actions';
+import { loginApi } from '../../services/api';
 
 export interface LoginFormDispatchToProps {
-  ping: typeof ping;
+  registerLogIn: typeof auth.logIn;
 }
 
-type allProps = LoginFormDispatchToProps & AuthState & WithStyles<typeof styles>;
+type allProps = LoginFormDispatchToProps & WithStyles<typeof styles> & RouteComponentProps;
 
 class LoginForm extends React.Component<allProps> {
 
   state = {
-    usernameLabel: 'Username',
+    emailLabel: 'E-mail',
     passwordLabel: 'Password',
     errorMessage: '',
-    name: '',
-    password: ''
+    email: '',
+    password: '',
+    isLoading: false,
   };
 
-  componentDidMount() {
-    console.log(this.context);
+  handleChange = (event: React.SyntheticEvent, key: string) => {
+    let target = event.target as HTMLInputElement;
+    this.setState({ [key]: target.value});
   }
 
-  handleChange = (event: React.SyntheticEvent) => {
-    let target = event.target as HTMLInputElement;
-    this.setState({ name: target.value});
+  handleSubmit = () => {
+
+    const { email, password } = this.state;
+
+    this.setState({ errorMessage: '' });
+
+    const loginRequest = loginApi('/login', {
+      email,
+      password,
+    });
+
+    loginRequest.subscribe({
+      next: (isAuthenticated) => {
+
+        if (isAuthenticated) {
+          this.props.registerLogIn({
+            email
+          });
+
+          // Redirect to the homepage
+          this.props.history.push(URLS.News);
+
+        } else {
+          this.setState({ errorMessage: 'The credentials you submitted are not valid.' });
+        }
+      },
+      error: (err) => {
+        this.setState({ errorMessage: 'There was an error in your request' });
+      }
+    });
+
   }
 
   public render() {
-    const { classes, isPinging, ping } = this.props;
-    const { usernameLabel, passwordLabel, name, password, errorMessage } = this.state;
+    const { classes } = this.props;
+
+    const {
+      emailLabel,
+      passwordLabel,
+      email,
+      password,
+      errorMessage
+    } = this.state;
+
+    const disabledSubmitBtn = email === '' || password === '' ? true : false;
 
     return (
-      <form className={classes.root}>
+      <form className={classes.root} noValidate>
         <FormControl className={classes.formControl} error={!!errorMessage} fullWidth={true}>
-          <InputLabel htmlFor='username'>{usernameLabel}</InputLabel>
-          <Input id='username' value={name} onChange={this.handleChange} />
-          {!!errorMessage && <FormHelperText id='component-error-text'>Error</FormHelperText>}
+          <InputLabel htmlFor='email'>{emailLabel}</InputLabel>
+          <Input id='email' value={email} onChange={(e) => this.handleChange(e, 'email')} />
         </FormControl>
         <FormControl className={classes.formControl} error={!!errorMessage} fullWidth={true}>
           <InputLabel htmlFor='password'>{passwordLabel}</InputLabel>
-          <Input id='password' value={password} onChange={this.handleChange} type='password' />
-          {!!errorMessage && <FormHelperText id='component-error-text'>Error</FormHelperText>}
+          <Input id='password' value={password} onChange={(e) => this.handleChange(e, 'password')} type='password' />
         </FormControl>
-        <Button variant='contained' size='medium' color='primary' className={classes.button} onClick={ping}>
+        <Button variant='contained' size='medium' color='primary' disabled={disabledSubmitBtn} className={classes.button} onClick={this.handleSubmit}>
           Sign In
         </Button>
-        <br></br>
-        <h2>is pinging?::: {isPinging ? 'yes' : 'no'}</h2>
+        <div className={classes.errorMsg}>
+          <Typography color='error'>{errorMessage}</Typography>
+        </div>
       </form>
     );
   }
 }
 
-export default withStyles(styles)(LoginForm);
+const styledComponent = withStyles(styles)(LoginForm);
+
+export default withRouter(styledComponent);

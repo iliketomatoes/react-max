@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router';
-import { ApplicationState } from './reducers';
+import { UserProvider } from './contexts/UserContext';
+import { RootStoreState } from './modules';
 import Routes from './routes';
 import { History } from 'history';
 import { MuiThemeProvider } from '@material-ui/core';
@@ -15,17 +16,14 @@ import theme from './theme';
 //   theme: ThemeColors
 // }
 
-interface PropsFromDispatch {
-  [key: string]: any;
-}
 
 interface OwnProps {
-  store: Store<ApplicationState>;
+  store: Store<RootStoreState>;
   history: History;
 }
 
 // Create an intersection type of the component props and our Redux props.
-type AllProps = PropsFromDispatch & OwnProps;
+type AllProps = OwnProps;
 
 class Main extends React.Component<AllProps> {
   public render() {
@@ -34,12 +32,14 @@ class Main extends React.Component<AllProps> {
 
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes />
-          </MuiThemeProvider>
-        </ConnectedRouter>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <UserProvider>
+            <ConnectedRouter history={history}>
+              <Routes />
+            </ConnectedRouter>
+          </UserProvider>
+        </MuiThemeProvider>
       </Provider>
     );
   }

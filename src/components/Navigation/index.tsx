@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import styles from './styles';
+import { UserConsumer, UserProviderProps } from '../../contexts/UserContext';
 import NavLink from '../NavigationLink';
 
 interface NavProps extends WithStyles<typeof styles> {
@@ -19,17 +20,7 @@ class Navigation extends React.Component<NavProps> {
 
   state = {
     anchorEl: null,
-    auth: true,
   };
-
-  constructor(props: NavProps) {
-    super(props);
-  }
-
-  handleClick = (e: React.SyntheticEvent) => {
-    console.log({e});
-    console.log('this is:', this);
-  }
 
   handleMenu = (event: React.MouseEvent) => {
     this.setState({ anchorEl: event.currentTarget });
@@ -39,9 +30,14 @@ class Navigation extends React.Component<NavProps> {
     this.setState({ anchorEl: null });
   }
 
+  handleLogout = (callback: Function) => {
+    this.handleClose();
+    callback();
+  }
+
   public render() {
     const { classes } = this.props;
-    const { auth, anchorEl } = this.state;
+    const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     const navItems = this.props.routes.map((route) =>
@@ -51,53 +47,57 @@ class Navigation extends React.Component<NavProps> {
     );
 
     return (
-      <div className={classes.root}>
-        <AppBar position='static' color='default'>
-          <Toolbar>
-            <IconButton className={classes.menuButton} color='inherit' aria-label='Menu'>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant='title' color='inherit' className={classes.grow}>
-              Logo
-            </Typography>
-            {auth && (
-              <div className={classes.navAuthSection}>
-                <nav>
-                  <ul className={classes.navList}>
-                    {navItems}
-                  </ul>
-                </nav>
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : undefined}
-                  aria-haspopup='true'
-                  onClick={this.handleMenu}
-                  color='inherit'
-                >
-                  <AccountCircle />
-                </IconButton>
-                <Menu
-                  id='menu-appbar'
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    horizontal: 'right',
-                    vertical: 'top',
-                  }}
-                  transformOrigin={{
-                    horizontal: 'right',
-                    vertical: 'top',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                  >
-                    <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  </Menu>
-                </div>
-              )
-            }
-          </Toolbar>
-        </AppBar>
-      </div>
+      <UserConsumer>{
+        ({isAuthenticated, logOut}: UserProviderProps ) => (
+          isAuthenticated ?
+            <div className={classes.root}>
+              <AppBar position='static' color='default'>
+                <Toolbar>
+                  <IconButton className={classes.menuButton} color='inherit' aria-label='Menu'>
+                    <MenuIcon />
+                  </IconButton>
+                  <Typography variant='title' color='inherit' className={classes.grow}>
+                    React Max
+                  </Typography>
+                    <div className={classes.navAuthSection}>
+                      <nav>
+                        <ul className={classes.navList}>
+                          {navItems}
+                        </ul>
+                      </nav>
+                      <IconButton
+                        aria-owns={open ? 'menu-appbar' : undefined}
+                        aria-haspopup='true'
+                        onClick={this.handleMenu}
+                        color='inherit'
+                      >
+                        <AccountCircle />
+                      </IconButton>
+                      <Menu
+                        id='menu-appbar'
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                          horizontal: 'right',
+                          vertical: 'top',
+                        }}
+                        transformOrigin={{
+                          horizontal: 'right',
+                          vertical: 'top',
+                        }}
+                        open={open}
+                        onClose={this.handleClose}
+                        >
+                          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                          <MenuItem onClick={() => this.handleLogout(logOut)}>Sign Out</MenuItem>
+                        </Menu>
+                      </div>
+                </Toolbar>
+              </AppBar>
+            </div>
+          : null
+        )
+      }
+      </UserConsumer>
     );
   }
 }

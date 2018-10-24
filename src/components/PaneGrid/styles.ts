@@ -11,6 +11,11 @@ const styles = createStyles({
     padding: '80px 0 40px',
     width: '100%'
   },
+  paneToggleContainer: {
+    display: 'block',
+    marginBottom: 30,
+    width: '100%'
+  },
   paneContainer: {
     display: 'grid',
     flex: '1 0 auto',

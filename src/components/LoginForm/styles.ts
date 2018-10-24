@@ -15,6 +15,9 @@ const styles = ({ spacing }: Theme) => createStyles({
     marginTop: spacing.unit * 2,
     marginLeft: 'auto',
   },
+  errorMsg: {
+    width: '100%',
+  },
 });
 
 export default styles;

@@ -7,6 +7,12 @@ Front end application built with:
     * Typescript 3
     * Material UI 3
 
+
+## Requirements
+
+### Node >=8.9.4
+### NPM ^6.1.0
+
 ## Installation
 
 ```bash

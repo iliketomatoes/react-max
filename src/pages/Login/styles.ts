@@ -12,7 +12,7 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
     height: '100%'
   },
   card: {
-    minWidth: 280,
+    maxWidth: 380,
     margin: spacing.unit * 2,
     padding: `20px`,
     zIndex: 10
