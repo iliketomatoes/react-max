@@ -1,29 +1,15 @@
 # EditorConfig is awesome: http://EditorConfig.org
 
-# top-most EditorConfig file
+# editorconfig.org
 root = true
 
-# Unix-style newlines with a newline ending every file
 [*]
-charset = utf-8
+indent_style = space
+indent_size = 2
 end_of_line = lf
+charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-# 4 space indentation
-[*.py]
-indent_style = space
-indent_size = 4
-
-# Tab indentation (no size specified)
-[Makefile]
-indent_style = tab
-
-# Indentation override for all JS under lib directory
-[*.{js,ts,tsx,scss,css,json,html}]
-indent_style = space
-indent_size = 2
-
-[*.{yaml,yml}]
-indent_style = space
-indent_size = 4
+[*.md]
+trim_trailing_whitespace = false
