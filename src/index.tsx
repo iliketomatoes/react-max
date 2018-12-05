@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { createHashHistory } from 'history';
-
-import configureStore from './modules/index';
-
+import configureStore from './store';
 import Main from './main';
 import registerServiceWorker from './registerServiceWorker';
 

@@ -3,12 +3,12 @@ import { Provider } from 'react-redux';
 import { Store } from 'redux';
 import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router';
-import { RootStoreState } from './store/rootReducer';
-import Routes from './routes';
+import { RootStoreState } from '../../store/rootReducer';
+import Routes from '../../routes';
 import { History } from 'history';
 import { MuiThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from './theme';
+import theme from '../../theme';
 
 // Separate props from state and props from dispatch to their own interfaces.
 // interface PropsFromState {

@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Login from './modules/auth/containers/Login';
-import Example from './modules/template/containers/ExamplePage';
-import Navigation from './components/Navigation';
+import Homepage from './pages/Home';
+// import Login from './modules/auth/containers/Login';
+// import Example from './modules/template/containers/ExamplePage';
+// import Navigation from './components/Navigation';
 
 export enum URLS {
   Login = '/login',
-  Pets = '/pets',
+  Homepage = '/home',
   Example = '/example',
 }
 
 const navConfig = [
-  { label: 'Pets', url: URLS.Pets },
+  { label: 'Homepage', url: URLS.Homepage },
   { label: 'Example', url: URLS.Example },
 ];
 
@@ -25,11 +26,10 @@ class Routes extends React.Component {
 
     return (
       <React.Fragment>
-        <Navigation routes={navConfig}/>
         <Switch>
-          <Route path={URLS.Login} component={Login} />
+          <Route path={URLS.Login} component={Homepage} />
           <Route exact path='/' render={() => <Redirect to={URLS.Login} />} />
-          <ProtectedRoute exact path={URLS.Pets} component={Example}/>
+          <ProtectedRoute exact path={URLS.Homepage} component={Homepage}/>
           <ProtectedRoute component={() => <div>Not Found</div>} />
         </Switch>
       </React.Fragment>
