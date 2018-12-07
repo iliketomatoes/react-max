@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { createHashHistory } from 'history';
-import configureStore from './store';
-import Main from './main';
-import registerServiceWorker from './registerServiceWorker';
+import configureStore from 'src/store';
+import theme from 'src/theme';
+import App from 'src/App';
+import registerServiceWorker from 'src/registerServiceWorker';
 
 const history = createHashHistory();
 
@@ -23,7 +24,7 @@ store.subscribe(() => {
 
 // Render the app
 render(
-  <Main store={store} history={history} />,
+  <App store={store} history={history} theme={theme} />,
   document.getElementById('root') as HTMLElement
 );
 

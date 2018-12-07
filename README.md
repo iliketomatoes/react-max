@@ -1,18 +1,19 @@
 # React Max
 
-Ideal boilerplate for a modern Progressive Web Application built with React 16.
+Ideal boilerplate for a modern Progressive Web Application built with React.
 
 ## Features and main traits
 
 Founding tools used for coding and bundling:
 
-- [x] Redux ^16.7.0 (yes, it's using React Hooks)
+- [x] React (with React Hooks)
 - [x] Typescript 3
 - [x] Webpack 4
 
 State management:
 
 - [x] Redux
+- [ ] Redux-react-hook
 - [ ] Redux-Observables
 - [ ] React Immer
 - [ ] FSA Actions
@@ -26,7 +27,7 @@ API client:
 
 UI components - Styles:
 
-- [x] React Material UI 3
+- [x] React Material UI
 - [x] JSS
 
 Routing:
@@ -45,8 +46,8 @@ PWA:
 
 ## Requirements
 
-### Node >=8.9.4
-### NPM ^6.1.0
+`Node >=8.9.4`
+`NPM ^6.1.0`
 
 ## Installation
 

@@ -12,6 +12,7 @@ module.exports = {
     publicPath: '',
   },
   resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     extensions: ['ts','.ts', '.tsx', '.js', '.jsx', '.webpack.js', '.web.js', '.mjs', '.json'],
   },
   module: {
