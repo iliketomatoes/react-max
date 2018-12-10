@@ -1,3 +1,5 @@
+[![David Dependency Status](https://david-dm.org/iliketomatoes/react-max.svg)](https://david-dm.org/iliketomatoes/react-max)
+
 # React Max
 
 Ideal boilerplate for a modern Progressive Web Application built with React.
