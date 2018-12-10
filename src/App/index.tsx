@@ -11,8 +11,10 @@ import { RootStoreState } from 'src/store/rootReducer';
 import theme from 'src/theme';
 import ProtectedRoute from 'src/ProtectedRoute';
 import { URLS } from 'src/routes';
+import Header from 'src/Header';
 import About from 'src/About';
 import AuthLogin from 'src/Auth/Login';
+import AppNotFound from './NotFound';
 
 // Separate props from state and props from dispatch to their own interfaces.
 interface PropsFromState {
@@ -31,12 +33,16 @@ class App extends React.Component<PropsFromState> {
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
             <ConnectedRouter history={history}>
-              <Switch>
-                <Route path={URLS.Login} component={AuthLogin} />
-                <Route exact path='/' render={() => <Redirect to={URLS.Login} />} />
-                <ProtectedRoute exact path={URLS.Homepage} component={About}/>
-                <ProtectedRoute component={() => <div>Not Found</div>} />
-              </Switch>
+              <React.Fragment>
+                <Header />
+                <Switch>
+                  <Route exact path='/' render={() => <Redirect to={URLS.Homepage} />} />
+                  <Route path={URLS.Login} component={AuthLogin} />
+                  <ProtectedRoute exact path={URLS.Homepage} component={About}/>
+                  <ProtectedRoute component={() => <div>Not Found</div>} />
+                  <Route component={AppNotFound}/>
+                </Switch>
+              </React.Fragment>
             </ConnectedRouter>
         </MuiThemeProvider>
       </Provider>
