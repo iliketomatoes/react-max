@@ -1,4 +1,6 @@
 [![David Dependency Status](https://david-dm.org/iliketomatoes/react-max.svg)](https://david-dm.org/iliketomatoes/react-max)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/iliketomatoes/react-max.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/iliketomatoes/react-max/context:javascript)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/iliketomatoes/react-max.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/iliketomatoes/react-max/alerts/)
 
 # React Max
 
@@ -30,11 +32,12 @@ API client:
 UI components - Styles:
 
 - [x] React Material UI
-- [x] JSS
+- [x] CSS-in-JS (with useStyles hook)
 
 Routing:
 
 - [x] React Router
+- [ ] Protected routes
 
 Auth:
 

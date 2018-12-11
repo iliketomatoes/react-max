@@ -61,7 +61,7 @@ module.exports = {
     new CheckerPlugin(),
     new StyleLintPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React app dashboard',
+      title: 'React Max',
       template: './src/index.html'
     })
   ],
