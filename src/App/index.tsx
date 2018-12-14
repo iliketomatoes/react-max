@@ -7,8 +7,8 @@ import { MuiThemeProvider } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ConnectedRouter } from 'connected-react-router';
 import { RootStoreState } from 'src/rootReducer';
-import theme from 'src/theme';
 import Router from 'src/Router';
+import theme from './theme';
 
 // Separate props from state and props from dispatch to their own interfaces.
 interface PropsFromState {
