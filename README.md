@@ -51,8 +51,8 @@ PWA:
 
 ## Requirements
 
-`Node >=8.9.4`
-`NPM ^6.1.0`
+- Node: `>=8.9.4`
+- npm: `^6.1.0`
 
 ## Installation
 

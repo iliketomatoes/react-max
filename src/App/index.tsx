@@ -1,14 +1,20 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
-import { hot } from 'react-hot-loader';
+import { setConfig } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import { History } from 'history';
-import { MuiThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ConnectedRouter } from 'connected-react-router';
 import { RootStoreState } from 'src/rootReducer';
 import Router from 'src/Router';
 import theme from './theme';
+
+setConfig({
+  pureSFC: true,
+  pureRender: true,
+});
 
 // Separate props from state and props from dispatch to their own interfaces.
 interface PropsFromState {
@@ -23,16 +29,15 @@ class App extends React.Component<PropsFromState> {
 
     return (
       <Provider store={store}>
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
             <ConnectedRouter history={history}>
               <Router />
             </ConnectedRouter>
-        </MuiThemeProvider>
+        </ThemeProvider>
       </Provider>
     );
   }
 }
 
-// Enable hot module replacement
-export default hot(module)(App);
+export default hot(App);

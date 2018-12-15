@@ -4,7 +4,7 @@ import ProtectedRoute from 'src/ProtectedRoute';
 import { URLS } from 'src/rootRoutes';
 import Header from 'src/Header';
 import About from 'src/About';
-import AuthLogin from 'src/Auth/Login';
+import AuthLoginScene from 'src/Auth/LoginScene';
 import NotFound from 'src/NotFound';
 
 class Router extends React.Component {
@@ -14,7 +14,7 @@ class Router extends React.Component {
         <Header />
         <Switch>
           <Route exact path='/' render={() => <Redirect to={URLS.Homepage} />} />
-          <Route path={URLS.Login} component={AuthLogin} />
+          <Route path={URLS.Login} component={AuthLoginScene} />
           <ProtectedRoute exact path={URLS.Homepage} component={About}/>
           <ProtectedRoute component={() => <div>Not Found</div>} />
           <Route component={NotFound}/>
