@@ -1,18 +1,15 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader/root';
-import { WithStyles, withStyles } from '@material-ui/styles';
 import Avatar from '@material-ui/core/Avatar';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import LoginForm from 'src/Auth/LoginForm';
-import styles from './styles';
+import useStyles from './styles';
 
-interface Props extends WithStyles<typeof styles> { }
+function Login () {
 
-function Login (props: Props) {
-
-  const { classes } = props;
+  const classes = useStyles({});
 
   return (
     <main className={classes.main}>
@@ -31,4 +28,4 @@ function Login (props: Props) {
 }
 
 // Enable hot module replacement
-export default hot(withStyles(styles)(Login));
+export default hot(Login);

@@ -4,7 +4,16 @@ import { Store } from 'redux';
 import { setConfig } from 'react-hot-loader';
 import { hot } from 'react-hot-loader/root';
 import { History } from 'history';
+
+/**
+ * As of today Material UI needs two providers.
+ * The first one is needed by the experimental hooks,
+ * the second on is the legacy provider. In the future
+ * the legacy provider will be removed.
+ */
 import { ThemeProvider } from '@material-ui/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ConnectedRouter } from 'connected-react-router';
 import { RootStoreState } from 'src/rootReducer';
@@ -29,12 +38,14 @@ class App extends React.Component<PropsFromState> {
 
     return (
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-            <ConnectedRouter history={history}>
-              <Router />
-            </ConnectedRouter>
-        </ThemeProvider>
+        <MuiThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+              <ConnectedRouter history={history}>
+                <Router />
+              </ConnectedRouter>
+          </ThemeProvider>
+        </MuiThemeProvider>
       </Provider>
     );
   }
