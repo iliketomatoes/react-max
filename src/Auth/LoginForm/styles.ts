@@ -8,6 +8,14 @@ const styles = (theme: Theme) => createStyles({
     submit: {
       marginTop: theme.spacing.unit * 3,
     },
+    errorMsg: {
+      display: 'flex',
+      marginBottom: theme.spacing.unit * 2,
+      marginTop: theme.spacing.unit * 2,
+    },
+    errorIcon: {
+      marginRight: 6,
+    }
   });
 
 export default styles;

@@ -7,21 +7,19 @@ import About from 'src/About';
 import AuthLoginScene from 'src/Auth/LoginScene';
 import NotFound from 'src/NotFound';
 
-class Router extends React.Component {
-  public render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <Switch>
-          <Route exact path='/' render={() => <Redirect to={URLS.Homepage} />} />
-          <Route path={URLS.Login} component={AuthLoginScene} />
-          <ProtectedRoute exact path={URLS.Homepage} component={About}/>
-          <ProtectedRoute component={() => <div>Not Found</div>} />
-          <Route component={NotFound}/>
-        </Switch>
-      </React.Fragment>
-    );
-  }
+function Router() {
+  return (
+    <React.Fragment>
+      <Header />
+      <Switch>
+        <Route exact path='/' render={() => <Redirect to={URLS.Homepage} />} />
+        <Route path={URLS.Login} component={AuthLoginScene} />
+        <ProtectedRoute exact path={URLS.Homepage} component={About}/>
+        <ProtectedRoute component={() => <div>Not Found</div>} />
+        <Route component={NotFound}/>
+      </Switch>
+    </React.Fragment>
+  );
 }
 
 export default Router;

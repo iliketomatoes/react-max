@@ -61,7 +61,6 @@
     "connected-react-router": "^6.0.0",
     "file-loader": "^2.0.0",
     "history": "^4.7.2",
-    "install": "^0.12.2",
     "portable-fetch": "^3.0.0",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
