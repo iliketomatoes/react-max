@@ -23,36 +23,35 @@ State management:
 - [ ] FSA Actions
 - [ ] Retrieve initial state from the Local Storage
 
-API client:
+API client and UX:
 
 - [ ] GraphQL
 - [ ] Easy-to-use components which make API calls — pending, success, error states.
 - [ ] API requests errors are notified through a global context provider.
+- [ ] GraphQL caching through FlacheQL (? TBD)
+- [ ] Optimistic UI updates
 
 UI components - Styles:
 
 - [x] React Material UI
 - [x] CSS-in-JS (with useStyles hook)
 
-Routing:
+Routing and Auth:
 
 - [x] React Router
 - [ ] Protected routes
-
-Auth:
-
 - [ ] Login/logout functionalities
-- [ ] Protected routes
 - [ ] Auto logout on 403 errors
 
-PWA:
+Progressive Web App:
 
-- [ ] API requests caching through the Service Worker
+- [ ] Enabled offline usage
+- [ ] Asset caching
 
 ## Requirements
 
-`Node >=8.9.4`
-`NPM ^6.1.0`
+- Node: `>=8.9.4`
+- npm: `^6.1.0`
 
 ## Installation
 

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { render } from 'react-dom';
+import { install } from '@material-ui/styles';
 import { createHashHistory } from 'history';
 import configureStore from 'src/store';
-import theme from 'src/theme';
 import App from 'src/App';
 import registerServiceWorker from 'src/registerServiceWorker';
+
+// Bootstrap material-ui
+install();
 
 const history = createHashHistory();
 
@@ -24,7 +27,7 @@ store.subscribe(() => {
 
 // Render the app
 render(
-  <App store={store} history={history} theme={theme} />,
+  <App store={store} history={history} />,
   document.getElementById('root') as HTMLElement
 );
 

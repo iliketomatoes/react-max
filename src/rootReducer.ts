@@ -4,6 +4,8 @@ import { connectRouter } from 'connected-react-router';
 // If you use react-router, don't forget to pass in your history type.
 import { History } from 'history';
 
+import * as auth from 'src/Auth/reducer';
+
 
 /**
  * The root store state. Include sub-states for all of the modules / ducks.
@@ -11,9 +13,7 @@ import { History } from 'history';
  * the tree of StoreState interfaces, and their contents.
  */
 export interface RootStoreState {
-  // readonly template: template.StoreState;
-  // readonly auth: auth.StoreState;
-  // readonly petstore: petstore.StoreState;
+  readonly auth: auth.StoreState;
 }
 
 
@@ -21,10 +21,8 @@ export interface RootStoreState {
  * The root reducer, combines reducers for all of the modules / ducks.
  */
 const rootReducer = {
-  // template: template.reducer,
-  // auth: auth.reducer,
-  // petstore: petstore.reducer,
-} as RootStoreState;
+  auth: auth.reducer,
+};
 
 export default (history: History) => combineReducers({
   router: connectRouter(history),
