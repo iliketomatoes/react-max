@@ -6,12 +6,12 @@
 
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import * as actions from './actions';
-import { AccessToken } from './types';
+import { AccessToken, AuthError } from './types';
 
 /** The store state for the auth module. */
 export interface StoreState {
   readonly accessToken?: AccessToken;
-  readonly error?: Error;
+  readonly error?: AuthError;
 }
 
 const INITIAL_STATE: StoreState = {
@@ -30,7 +30,7 @@ export const reducer = reducerWithInitialState(INITIAL_STATE)
     .case(actions.loginError, (state, error) => {
         return { ...state, error: error };
     })
-    .case(actions.loginRequest, (state) => {
+    .case(actions.loginRequest.started, (state: StoreState) => {
         return { ...state, error: undefined };
     })
     ;

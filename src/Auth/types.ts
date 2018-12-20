@@ -8,19 +8,21 @@
  */
 export interface AccessToken {
   readonly access_token: string;
-  readonly token_type: string;
-  readonly expires_in: number;
-  readonly refresh_token: string;
-
-  /** The timestamp (ms) at which we intend to refresh our access token. */
-  readonly refreshAt: number;
 }
 
 /**
-* Configuration for the OAuth 2 functions.
-*/
+ * Configuration for the OAuth 2 functions.
+ */
 export interface Config {
   readonly apiBase: string;
   readonly clientId: string;
   readonly clientSecret: string;
+}
+
+/**
+ * Error type for failed authentication.
+ */
+export interface AuthError {
+  readonly message: string;
+  readonly code: number;
 }
