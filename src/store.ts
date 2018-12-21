@@ -5,6 +5,7 @@ import { Store, createStore, applyMiddleware, StoreEnhancer } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 
 import { createEpicMiddleware } from 'redux-observable';
+import { Action } from 'typescript-fsa';
 
 // We'll be using Redux Devtools. We can use the `composeWithDevTools()`
 // directive so we can pass our middleware along with it
@@ -28,7 +29,7 @@ export default function configureStore(
   /**
    * Create the redux-epic middleware.
    */
-  const epicMiddleware = createEpicMiddleware();
+  const epicMiddleware = createEpicMiddleware<Action<any>, Action<any>, RootStoreState, any>();
 
   // configure middlewares
   const middlewares = [routerMiddleware(history), epicMiddleware];

@@ -3,7 +3,7 @@
  */
 
 import actionCreatorFactory from 'typescript-fsa';
-import { AccessToken } from './types';
+import { AccessToken, AuthError } from './types';
 
 const actionCreator = actionCreatorFactory('Auth');
 
@@ -13,7 +13,8 @@ export interface LoginRequestPayload {
 }
 
 /** Action creator for the login request. The payload contains the username and password requested. */
-export const loginRequest = actionCreator<LoginRequestPayload>('LOGIN_REQUEST');
+export const loginRequest = actionCreator
+    .async<LoginRequestPayload, AccessToken, AuthError>('LOGIN_REQUEST');
 
 /** Action creator for the logout request. */
 export const logoutRequest = actionCreator('LOGOUT_REQUEST');
@@ -25,7 +26,7 @@ export const loggedIn = actionCreator<AccessToken>('LOGGED_IN');
 export const loggedOut = actionCreator('LOGGED_OUT');
 
 /** An error has occurred while trying to login. */
-export const loginError = actionCreator<Error>('LOGIN_ERROR');
+export const loginError = actionCreator<AuthError>('LOGIN_ERROR');
 
 /** An error has occurred while the user is logged in, either logging out or refreshing the token. */
-export const loggedInError = actionCreator<Error>('LOGGED_IN_ERROR');
+export const loggedInError = actionCreator<AuthError>('LOGGED_IN_ERROR');

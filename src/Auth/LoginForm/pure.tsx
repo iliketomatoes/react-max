@@ -8,9 +8,9 @@ import Icon from '@material-ui/core/Icon';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
+import { Props, Actions } from './index';
 import styles from './styles';
 
-interface Props extends WithStyles<typeof styles> { }
 interface State {
   isFormFilled: boolean;
   isError: boolean;
@@ -18,7 +18,7 @@ interface State {
   password: string;
 }
 
-class LoginForm extends React.PureComponent<Props, State> {
+class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof styles>, State> {
 
   state: State = {
     isFormFilled: false,
@@ -68,8 +68,9 @@ class LoginForm extends React.PureComponent<Props, State> {
   // Handle form submit
   doLogin = (event: React.FormEvent) => {
     event.preventDefault();
-    // TODO
-    console.log(this.state);
+    const { password, email } = this.state;
+
+    this.props.onLogin(email, password);
   }
 
   render() {
