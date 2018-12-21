@@ -33,4 +33,7 @@ export const reducer = reducerWithInitialState(INITIAL_STATE)
     .case(actions.loginRequest.started, (state: StoreState) => {
         return { ...state, error: undefined };
     })
+    .case(actions.loginRequest.done, (state: StoreState, payload) => {
+      return { ...state, error: undefined, access_token: payload.result.access_token };
+    })
     ;
