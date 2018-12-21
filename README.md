@@ -18,9 +18,9 @@ State management:
 
 - [x] Redux
 - [ ] Redux-react-hook
-- [ ] Redux-Observables
+- [x] Redux-Observables
 - [ ] React Immer
-- [ ] FSA Actions
+- [x] FSA Actions
 - [ ] Retrieve initial state from the Local Storage
 
 API client and UX:
