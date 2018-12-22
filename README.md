@@ -17,7 +17,6 @@ Founding tools used for coding and bundling:
 State management:
 
 - [x] Redux
-- [ ] Redux-react-hook
 - [x] Redux-Observables
 - [ ] React Immer
 - [x] FSA Actions
