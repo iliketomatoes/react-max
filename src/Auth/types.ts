@@ -2,22 +2,11 @@
  * Type definitions for the authentication module.
  */
 
-/** The OAuth2 access token.
- *
- * Properties are marked as readonly because we store the access token in the Redux state.
- */
-export interface AccessToken {
-  readonly token: string;
-}
-
 /**
- * Configuration for the OAuth 2 functions.
+ * Acces token is an alphanumeric string.
  */
-export interface Config {
-  readonly apiBase: string;
-  readonly clientId: string;
-  readonly clientSecret: string;
-}
+export type AccessToken = string;
+
 
 /**
  * Error type for failed authentication.

@@ -6,7 +6,7 @@ import { RootStoreState } from 'src/rootReducer';
 
 /* Import module files */
 import * as actions from 'src/Auth/actions';
-import { accessTokenSelector } from 'src/Auth/selectors';
+import { getAccessToken } from 'src/Auth/selectors';
 import { AuthError } from 'src/Auth/types';
 
 /* Import pure component */
@@ -24,13 +24,13 @@ export interface Actions {
 
 export interface Props {
   loggedIn: boolean;
-  error?: AuthError;
+  error: Nullable<AuthError>;
 }
 
 /** Populate the Props from the store state. */
 const mapStateToProps = (state: RootStoreState): Props => {
   return {
-    loggedIn: accessTokenSelector(state) !== undefined,
+    loggedIn: Boolean(getAccessToken(state)),
     error: state.auth.error,
   };
 };

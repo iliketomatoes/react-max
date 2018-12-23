@@ -38,7 +38,7 @@ UI components - Styles:
 Routing and Auth:
 
 - [x] React Router
-- [ ] Protected routes
+- [x] Protected routes
 - [ ] Login/logout functionalities
 - [ ] Auto logout on 403 errors
 

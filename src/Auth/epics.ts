@@ -17,9 +17,7 @@ export const loginEpic = (
         // Execute fake login by creating a fake accessToken
         return loginRequest.done({
           params: action.payload,
-          result: {
-            token: 'ciaof334r3rf233'
-          }
+          result: 'hardcoded-fake-token-f334r3rf233'
         });
 
         })
