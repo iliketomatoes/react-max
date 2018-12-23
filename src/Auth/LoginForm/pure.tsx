@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Redirect } from 'react-router-dom';
 import { WithStyles, withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -8,6 +9,7 @@ import Icon from '@material-ui/core/Icon';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Typography from '@material-ui/core/Typography';
+import { URLS } from 'src/rootRoutes';
 import { Props, Actions } from './index';
 import styles from './styles';
 
@@ -28,6 +30,9 @@ class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof 
   };
 
   componentDidUpdate() {
+
+    // Enable the submit button when both fields are filled in,
+    // otherwise disable it.
     this.toggleSubmitButton();
   }
 
@@ -75,8 +80,13 @@ class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof 
 
   render() {
 
-    const { classes } = this.props;
+    const { classes, loggedIn } = this.props;
     const { isError, isFormFilled } = this.state;
+
+    // Redirect to the homepage if user is loggedin
+    if (loggedIn) {
+      return <Redirect to={URLS.Homepage} />;
+    }
 
     return (
       <form className={classes.main} onSubmit={this.doLogin}>

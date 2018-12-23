@@ -7,7 +7,7 @@
  * Properties are marked as readonly because we store the access token in the Redux state.
  */
 export interface AccessToken {
-  readonly access_token: string;
+  readonly token: string;
 }
 
 /**

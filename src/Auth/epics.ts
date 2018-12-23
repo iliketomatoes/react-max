@@ -11,14 +11,14 @@ export const loginEpic = (
     action$: Observable<Action<LoginRequestPayload>>,
     state: StateObservable<RootStoreState>) => action$.pipe(
       ofAction(loginRequest.started),
-      delay(1000), // Asynchronously wait 1000ms then continue
+      delay(700), // Asynchronously wait 700ms then continue
       map((action: Action<LoginRequestPayload>) => {
 
-        // Execute fake login by creating a fake access_token
+        // Execute fake login by creating a fake accessToken
         return loginRequest.done({
           params: action.payload,
           result: {
-            access_token: 'ciaof334r3rf233'
+            token: 'ciaof334r3rf233'
           }
         });
 
