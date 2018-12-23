@@ -23,14 +23,14 @@ export interface Actions {
 }
 
 export interface Props {
-  loggedIn: boolean;
+  isLoggedIn: boolean;
   error: Nullable<AuthError>;
 }
 
 /** Populate the Props from the store state. */
 const mapStateToProps = (state: RootStoreState): Props => {
   return {
-    loggedIn: Boolean(getAccessToken(state)),
+    isLoggedIn: Boolean(getAccessToken(state)),
     error: state.auth.error,
   };
 };

@@ -10,13 +10,13 @@ import { getAccessToken } from 'src/Auth/selectors';
 import router from './pure';
 
 export interface Props {
-  loggedIn: boolean;
+  isLoggedIn: boolean;
 }
 
 /** Populate the Props from the store state. */
 const mapStateToProps = (state: RootStoreState): Props => {
   return {
-    loggedIn: Boolean(getAccessToken(state)),
+    isLoggedIn: Boolean(getAccessToken(state)),
   };
 };
 

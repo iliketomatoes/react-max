@@ -10,16 +10,16 @@ import { Props } from './index';
 
 function Router(props: Props) {
 
-  const { loggedIn } = props;
+  const { isLoggedIn } = props;
 
   return (
     <React.Fragment>
       <NavBar />
       <Switch>
         <Route exact path='/' render={(props) => <Redirect to={URLS.Homepage} />} />
-        <Route path={URLS.Login} component={AuthLoginScene} isAllowed={loggedIn} />
-        <ProtectedRoute exact path={URLS.Homepage} component={About} isAllowed={loggedIn} />
-        <ProtectedRoute component={() => <div>Not Found</div>} isAllowed={loggedIn} />
+        <Route path={URLS.Login} component={AuthLoginScene} isAllowed={isLoggedIn} />
+        <ProtectedRoute exact path={URLS.Homepage} component={About} isAllowed={isLoggedIn} />
+        <ProtectedRoute component={() => <div>Not Found</div>} isAllowed={isLoggedIn} />
         <Route component={NotFound}/>
       </Switch>
     </React.Fragment>

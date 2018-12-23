@@ -80,11 +80,11 @@ class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof 
 
   render() {
 
-    const { classes, loggedIn } = this.props;
+    const { classes, isLoggedIn } = this.props;
     const { isError, isFormFilled } = this.state;
 
-    // Redirect to the homepage if user is loggedin
-    if (loggedIn) {
+    // Redirect to the homepage if user is isLoggedIn
+    if (isLoggedIn) {
       return <Redirect to={URLS.Homepage} />;
     }
 
