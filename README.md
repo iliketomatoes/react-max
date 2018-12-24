@@ -19,7 +19,7 @@ State management:
 - [x] Redux
 - [x] Redux-Observables
 - [ ] React Reselect
-- [ ] React Immer
+- [x] React Immer
 - [x] FSA Actions
 - [ ] Retrieve initial state from the Local Storage
 

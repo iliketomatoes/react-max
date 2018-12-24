@@ -61,6 +61,7 @@
     "connected-react-router": "^6.0.0",
     "file-loader": "^3.0.0",
     "history": "^4.7.2",
+    "immer": "^1.9.3",
     "react": "next",
     "react-dom": "next",
     "react-redux": "^6.0.0",
