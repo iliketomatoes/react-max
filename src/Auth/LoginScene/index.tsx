@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import LoginForm from 'src/Auth/LoginForm';
+import AuthLoginForm from 'src/Auth/LoginForm';
 import useStyles from './styles';
 
 function Login () {
@@ -20,7 +20,7 @@ function Login () {
         <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
-        <LoginForm />
+        <AuthLoginForm />
       </Paper>
     </main>
     );
