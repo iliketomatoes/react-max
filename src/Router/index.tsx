@@ -1,25 +1,23 @@
-import * as React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import ProtectedRoute from 'src/ProtectedRoute';
-import { URLS } from 'src/rootRoutes';
-import Header from 'src/Header';
-import About from 'src/About';
-import AuthLoginScene from 'src/Auth/LoginScene';
-import NotFound from 'src/NotFound';
+import { connect } from 'react-redux';
 
-function Router() {
-  return (
-    <React.Fragment>
-      <Header />
-      <Switch>
-        <Route exact path='/' render={() => <Redirect to={URLS.Homepage} />} />
-        <Route path={URLS.Login} component={AuthLoginScene} />
-        <ProtectedRoute exact path={URLS.Homepage} component={About}/>
-        <ProtectedRoute component={() => <div>Not Found</div>} />
-        <Route component={NotFound}/>
-      </Switch>
-    </React.Fragment>
-  );
+/* Import RootStoreState */
+import { RootStoreState } from 'src/rootReducer';
+
+/* Import state selectors */
+import { getAccessToken } from 'src/Auth/selectors';
+
+/* Import pure component */
+import router from './pure';
+
+export interface Props {
+  isLoggedIn: boolean;
 }
 
-export default Router;
+/** Populate the Props from the store state. */
+const mapStateToProps = (state: RootStoreState): Props => {
+  return {
+    isLoggedIn: Boolean(getAccessToken(state)),
+  };
+};
+
+export default connect(mapStateToProps, null)(router);

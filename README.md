@@ -17,8 +17,8 @@ Founding tools used for coding and bundling:
 State management:
 
 - [x] Redux
-- [ ] Redux-react-hook
 - [x] Redux-Observables
+- [ ] React Reselect
 - [ ] React Immer
 - [x] FSA Actions
 - [ ] Retrieve initial state from the Local Storage
@@ -39,8 +39,8 @@ UI components - Styles:
 Routing and Auth:
 
 - [x] React Router
-- [ ] Protected routes
-- [ ] Login/logout functionalities
+- [x] Protected routes
+- [x] Login/logout functionalities
 - [ ] Auto logout on 403 errors
 
 Progressive Web App:

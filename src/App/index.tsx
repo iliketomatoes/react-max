@@ -25,14 +25,26 @@ setConfig({
   pureRender: true,
 });
 
-// Separate props from state and props from dispatch to their own interfaces.
-interface PropsFromState {
+interface Props {
   store: Store<RootStoreState>;
   history: History;
 }
 
-class App extends React.Component<PropsFromState> {
-  public render() {
+class App extends React.Component<Props> {
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.handleBeforeunload.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.handleBeforeunload.bind(this));
+  }
+
+  handleBeforeunload = (event: Event) => {
+    // TODO save store in locale storage
+  }
+
+  render() {
 
     const { store, history } = this.props;
 
@@ -41,9 +53,9 @@ class App extends React.Component<PropsFromState> {
         <MuiThemeProvider theme={theme}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-              <ConnectedRouter history={history}>
-                <Router />
-              </ConnectedRouter>
+            <ConnectedRouter history={history}>
+              <Router />
+            </ConnectedRouter>
           </ThemeProvider>
         </MuiThemeProvider>
       </Provider>

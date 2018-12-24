@@ -1,4 +1,6 @@
-const styles = {
+import { makeStyles } from '@material-ui/styles';
+
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
@@ -21,6 +23,6 @@ const styles = {
   navListItem: {
     display: 'inline-block'
   }
-};
+});
 
-export default styles;
+export default useStyles;
