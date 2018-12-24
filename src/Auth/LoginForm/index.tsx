@@ -10,7 +10,7 @@ import { getAccessToken } from 'src/Auth/selectors';
 import { AuthError } from 'src/Auth/types';
 
 /* Import pure component */
-import loginForm from './pure';
+import LoginForm from './pure';
 
 
 /**
@@ -19,7 +19,6 @@ import loginForm from './pure';
  */
 export interface Actions {
   onLogin: (email: string, password: string) => void;
-  onLogout: () => void;
 }
 
 export interface Props {
@@ -39,10 +38,7 @@ const mapStateToProps = (state: RootStoreState): Props => {
 const mapDispatchToProps = (dispatch: Dispatch): Actions => ({
   onLogin: (email, password) => {
     dispatch(actions.loginRequest.started({ email, password }));
-  },
-  onLogout: () => {
-    dispatch(actions.logoutRequest());
-  },
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

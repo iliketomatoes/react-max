@@ -19,8 +19,5 @@ export const loginRequest = actionCreator
 /** Action creator for the logout request. */
 export const logoutRequest = actionCreator('LOGOUT_REQUEST');
 
-/** The user has been logged out. */
-export const loggedOut = actionCreator('LOGGED_OUT');
-
 /** An error has occurred while the user is logged in, either logging out or refreshing the token. */
 export const loggedInError = actionCreator<AuthError>('LOGGED_IN_ERROR');

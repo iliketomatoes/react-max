@@ -14,7 +14,7 @@ function Router(props: Props) {
 
   return (
     <React.Fragment>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} />
       <Switch>
         <Route exact path='/' render={(props) => <Redirect to={URLS.Homepage} />} />
         <Route path={URLS.Login} component={AuthLoginScene} isAllowed={isLoggedIn} />

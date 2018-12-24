@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { WithStyles, withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import styles from './styles';
+import LogoutButton from 'src/Auth/LogoutButton';
+import useStyles from './styles';
 
-interface NavProps extends WithStyles<typeof styles> { }
+interface NavProps {
+  isLoggedIn: boolean;
+}
 
 function NavBar(props: NavProps) {
-  const { classes } = props;
+
+  const classes = useStyles({});
+
+  // Return an empty div if the user is not logged in
+  if (!props.isLoggedIn) {
+    return <div></div>;
+  }
 
   return (
     <div className={classes.root}>
@@ -23,11 +30,11 @@ function NavBar(props: NavProps) {
           <Typography variant='h6' color='inherit' className={classes.grow}>
             React Max
           </Typography>
-          <Button color='inherit'>Logout</Button>
+          <LogoutButton />
         </Toolbar>
       </AppBar>
     </div>
   );
 }
 
-export default withStyles(styles)(NavBar);
+export default NavBar;

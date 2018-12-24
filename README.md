@@ -18,6 +18,7 @@ State management:
 
 - [x] Redux
 - [x] Redux-Observables
+- [ ] React Reselect
 - [ ] React Immer
 - [x] FSA Actions
 - [ ] Retrieve initial state from the Local Storage
@@ -39,7 +40,7 @@ Routing and Auth:
 
 - [x] React Router
 - [x] Protected routes
-- [ ] Login/logout functionalities
+- [x] Login/logout functionalities
 - [ ] Auto logout on 403 errors
 
 Progressive Web App:

@@ -20,7 +20,9 @@ interface State {
   password: string;
 }
 
-class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof styles>, State> {
+type CompositeProps = Props & Actions & WithStyles<typeof styles>;
+
+class LoginForm extends React.PureComponent<CompositeProps, State> {
 
   state: State = {
     isFormFilled: false,
@@ -28,6 +30,14 @@ class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof 
     email: '',
     password: '',
   };
+
+  checkboxRef: React.RefObject<any>;
+
+  constructor(props: CompositeProps) {
+    super(props);
+
+    this.checkboxRef = React.createRef();
+  }
 
   componentDidUpdate() {
 
@@ -103,7 +113,8 @@ class LoginForm extends React.PureComponent<Props & Actions & WithStyles<typeof 
               onChange={(e) => this.handleChange('password', e)} />
         </FormControl>
         <FormControlLabel
-          control={<Checkbox value='remember' color='primary' />}
+          inputRef={this.checkboxRef}
+          control={<Checkbox color='primary' value='remember me' defaultChecked={true}/>}
           label='Remember me'
         />
         {

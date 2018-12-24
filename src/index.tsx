@@ -24,7 +24,6 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-
 // Render the app
 render(
   <App store={store} history={history} />,

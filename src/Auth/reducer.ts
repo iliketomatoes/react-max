@@ -21,7 +21,7 @@ const INITIAL_STATE: StoreState = {
 
 export const reducer = reducerWithInitialState(INITIAL_STATE)
     /* The user has been logged out; remove our stored access token from the state. */
-    .case(actions.loggedOut, (state: StoreState) => {
+    .case(actions.logoutRequest, (state: StoreState) => {
         return { ...state, accessToken: null };
     })
     .case(actions.loginRequest.started, (state: StoreState) => {

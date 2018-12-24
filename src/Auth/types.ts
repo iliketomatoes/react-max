@@ -2,7 +2,8 @@
  * Type definitions for the authentication module.
  */
 
-/**
+
+ /**
  * Acces token is an alphanumeric string.
  */
 export type AccessToken = string;
