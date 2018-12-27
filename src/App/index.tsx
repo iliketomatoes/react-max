@@ -18,6 +18,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ConnectedRouter } from 'connected-react-router';
 import { RootStoreState } from 'src/rootReducer';
 import Router from 'src/Router';
+import AppContext from './Context';
 import theme from './theme';
 
 setConfig({
@@ -54,7 +55,9 @@ class App extends React.Component<Props> {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <ConnectedRouter history={history}>
-              <Router />
+              <AppContext>
+                <Router />
+              </AppContext>
             </ConnectedRouter>
           </ThemeProvider>
         </MuiThemeProvider>
