@@ -1,12 +1,10 @@
 import * as React from 'react';
+import { ApiContextInterface } from 'src/Api/types';
 
-interface ApiContextInterface {
-  userId?: Nullable<number>;
-  accessToken: Nullable<string>;
-}
 
 const defaultSettings: ApiContextInterface = {
   accessToken: null,
+  logout: () => {}, // noop
 };
 
 const ApiContext = React.createContext<ApiContextInterface>(defaultSettings);
@@ -16,7 +14,8 @@ export function ApiProvider({ ...props }: React.ProviderProps<ApiContextInterfac
     <ApiContext.Provider
       value={{
         userId: props.value.userId,
-        accessToken: props.value.accessToken
+        accessToken: props.value.accessToken,
+        logout: props.value.logout
       }}
     >
       {props.children}

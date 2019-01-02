@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 /* Import RootStoreState */
 import { RootStoreState } from 'src/rootReducer';
@@ -6,9 +7,19 @@ import { RootStoreState } from 'src/rootReducer';
 /* Import selectors */
 import { getAccessToken } from 'src/Auth/selectors';
 
+/* Import actions */
+import { logoutRequest } from 'src/Auth/actions';
+
 /* Import pure component */
 import AppContext from './pure';
 
+/**
+ * Interface for action callbacks that the container exposes to the component.
+ * The component's `this.props` is typed `Props & Actions`.
+ */
+export interface Actions {
+  onLogout: () => void;
+}
 
 export interface Props {
   accessToken: Nullable<string>;
@@ -21,5 +32,12 @@ const mapStateToProps = (state: RootStoreState): Props => {
   };
 };
 
+/** Populate the Actions with the callbacks for the component. */
+const mapDispatchToProps = (dispatch: Dispatch): Actions => ({
+  onLogout: () => {
+    dispatch(logoutRequest);
+  }
+});
 
-export default connect(mapStateToProps, null)(AppContext);
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContext);
