@@ -1,11 +1,11 @@
 export interface ApiContextInterface {
-  userId?: Nullable<number>;
   accessToken: Nullable<string>;
   logout: () => void;
+  userId?: Nullable<number>;
 }
 
-export interface QueryParams {
-  started: boolean;
-  done: boolean;
+export interface QueryPayload<T extends any> {
+  data: T;
   failed: boolean;
+  started: boolean;
 }
