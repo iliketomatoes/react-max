@@ -7,11 +7,11 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import produce from 'immer';
 import * as actions from './actions';
-import { AccessToken, AuthError } from './types';
+import { AuthError } from './types';
 
 /** The store state for the auth module. */
 export interface StoreState {
-  accessToken: Nullable<AccessToken>;
+  accessToken: Nullable<string>;
   error: Nullable<AuthError>;
 }
 
