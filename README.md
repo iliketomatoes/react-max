@@ -25,8 +25,8 @@ State management:
 
 API client and UX:
 
-- [ ] GraphQL
-- [ ] Easy-to-use components which make API calls — pending, success, error states.
+- [x] GraphQL
+- [x] Easy-to-use components which make API calls — pending, success, error states.
 - [ ] API requests errors are notified through a global context provider.
 - [ ] GraphQL caching through FlacheQL (? TBD)
 - [ ] Optimistic UI updates
