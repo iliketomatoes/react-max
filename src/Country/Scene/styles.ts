@@ -3,15 +3,16 @@ import { Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => {
   return {
-    main: {
-      display: 'flex',
+    root: {
+      margin: '0 auto',
+      maxWidth: 1280,
+      paddingLeft: theme.spacing.unit * 3,
+      paddingRight: theme.spacing.unit * 3,
       width: '100%',
     },
-    loggedInMain: {
-      minHeight: 'calc(100vh - 94px)',
-    },
-    loggedOutMain: {
-      minHeight: 'calc(100vh - 30px)',
+    header: {
+      paddingTop: theme.spacing.unit * 4,
+      width: '100%',
     },
   };
 });

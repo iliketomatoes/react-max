@@ -7,9 +7,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const borderRadius = 4;
 
-// Exported properties
-export const wrapperMaxWidth = 1600;
-
 const theme = createMuiTheme({
   shape: {
     borderRadius: borderRadius,

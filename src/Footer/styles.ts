@@ -7,6 +7,8 @@ const useStyles = makeStyles((theme: Theme) => {
       display: 'flex',
       flexFlow: 'wrap',
       justifyContent: 'space-between',
+      margin: '0 auto',
+      maxWidth: 1280,
       width: '100%',
     },
     span: {
