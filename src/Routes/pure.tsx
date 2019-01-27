@@ -16,10 +16,15 @@ function Routes(props: Props) {
 
   const classes = useStyles({});
 
+  const getMainClasses = (isLoggedIn: boolean) => {
+    if (isLoggedIn) return [classes.main, classes.loggedInMain];
+    return [classes.main, classes.loggedOutMain];
+  };
+
   return (
     <React.Fragment>
       <NavBar isLoggedIn={isLoggedIn} />
-      <main className={classes.main}>
+      <main className={getMainClasses(isLoggedIn).join(' ')}>
         <Switch>
           <Route exact path='/' render={(props) => <Redirect to={URLS.Homepage} />} />
           <Route path={URLS.Login} component={AuthLoginScene} isAllowed={isLoggedIn} />
