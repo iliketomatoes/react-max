@@ -13,7 +13,7 @@ interface Props<T> {
 
 export default function ApiQuerySubscriber<T>({ ...props }: Props<T>) {
 
-  const { meta, query, defaultValue } = props;
+  const { query, defaultValue } = props;
 
   const queryResults = useObservable((state$) => {
       return query.pipe(
@@ -37,8 +37,6 @@ export default function ApiQuerySubscriber<T>({ ...props }: Props<T>) {
 
   return (
     <div>
-      <div>{meta.accessToken}</div>
-      <div>{meta.userId}</div>
       {props.children(queryResults)}
     </div>
   );

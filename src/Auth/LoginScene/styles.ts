@@ -3,11 +3,11 @@ import { Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => {
   return {
-    main: {
-      width: 'auto',
+    scene: {
       display: 'block', // Fix IE 11 issue.
       marginLeft: theme.spacing.unit * 3,
       marginRight: theme.spacing.unit * 3,
+      width: 'auto',
       [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
         width: 400,
         marginLeft: 'auto',
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => {
       },
     },
     paper: {
-      marginTop: theme.spacing.unit * 8,
+      marginTop: theme.spacing.unit * 10,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

@@ -7,25 +7,25 @@ import Typography from '@material-ui/core/Typography';
 import AuthLoginForm from 'src/Auth/LoginForm';
 import useStyles from './styles';
 
-function Login () {
+function LoginScene () {
 
   const classes = useStyles({});
 
   return (
-    <main className={classes.main}>
+    <div className={classes.scene}>
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockIcon />
         </Avatar>
-        <Typography component='h1' variant='h5'>
+        <Typography component='h2' variant='h5'>
           Sign in
         </Typography>
         <AuthLoginForm />
       </Paper>
-    </main>
+    </div>
     );
 
 }
 
 // Enable hot module replacement
-export default hot(Login);
+export default hot(LoginScene);
