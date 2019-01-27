@@ -2,6 +2,8 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { install } from '@material-ui/styles';
 import { createHashHistory } from 'history';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from 'src/store';
 import App from 'src/App';
 import registerServiceWorker from 'src/registerServiceWorker';
@@ -11,22 +13,15 @@ install();
 
 const history = createHashHistory();
 
-// TODO use persisted state from browserStorage to initialize the store
-const store = configureStore(history);
-​
-// Every time the state changes, log it
-// Note that subscribe() returns a function for unregistering the listener
+// Get the store and its initial persisted state
+const { store, persistor } = configureStore(history);
 
-// TODO Throttle subscribe callback call
-// https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage
-store.subscribe(() => {
-  // TODO save state in the local storage
-  console.log(store.getState());
-});
-
-// Render the app
 render(
-  <App store={store} history={history} />,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App history={history} />
+    </PersistGate>
+  </Provider>,
   document.getElementById('root') as HTMLElement
 );
 

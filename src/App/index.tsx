@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Provider } from 'react-redux';
-import { Store } from 'redux';
 import { setConfig } from 'react-hot-loader';
 import { hot } from 'react-hot-loader/root';
 import { History } from 'history';
@@ -16,7 +14,6 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ConnectedRouter } from 'connected-react-router';
-import { RootStoreState } from 'src/rootReducer';
 import Routes from 'src/Routes';
 import AppContext from './Context';
 import theme from './theme';
@@ -27,41 +24,26 @@ setConfig({
 });
 
 interface Props {
-  store: Store<RootStoreState>;
   history: History;
 }
 
 class App extends React.Component<Props> {
 
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.handleBeforeunload.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.handleBeforeunload.bind(this));
-  }
-
-  handleBeforeunload = (event: Event) => {
-    // TODO save store in locale storage
-  }
-
   render() {
 
-    const { store, history } = this.props;
+    const { history } = this.props;
 
     return (
-      <Provider store={store}>
-        <MuiThemeProvider theme={theme}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <ConnectedRouter history={history}>
-              <AppContext>
-                <Routes />
-              </AppContext>
-            </ConnectedRouter>
-          </ThemeProvider>
-        </MuiThemeProvider>
-      </Provider>
+      <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ConnectedRouter history={history}>
+            <AppContext>
+              <Routes />
+            </AppContext>
+          </ConnectedRouter>
+        </ThemeProvider>
+      </MuiThemeProvider>
     );
   }
 }

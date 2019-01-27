@@ -21,7 +21,7 @@ State management:
 - [ ] React Reselect
 - [x] React Immer
 - [x] FSA Actions
-- [ ] Retrieve initial state from the Local Storage
+- [x] Redux-Persist — Retrieve initial state from the Local Storage.
 
 API client and UX:
 
