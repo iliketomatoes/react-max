@@ -1,9 +1,10 @@
 import { Observable, Observer } from 'rxjs';
-import { QueryPayload } from 'src/Api/types';
+import { QueryPayload } from './types';
+import { apiEndpoint } from './config';
 
 export const makeQuery = <T extends any>(query: string): Observable<QueryPayload<T>> => {
   return Observable.create((observer: Observer<QueryPayload<T>>) => {
-    fetch('https://countries.trevorblades.com', {
+    fetch(apiEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

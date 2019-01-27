@@ -7,7 +7,7 @@ import { RootStoreState } from 'src/rootReducer';
 import { getAccessToken } from 'src/Auth/selectors';
 
 /* Import pure component */
-import router from './pure';
+import routes from './pure';
 
 export interface Props {
   isLoggedIn: boolean;
@@ -20,4 +20,4 @@ const mapStateToProps = (state: RootStoreState): Props => {
   };
 };
 
-export default connect(mapStateToProps, null)(router);
+export default connect(mapStateToProps, null)(routes);
