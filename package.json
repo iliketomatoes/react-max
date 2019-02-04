@@ -60,6 +60,7 @@
     "@material-ui/styles": "^3.0.0-alpha.8",
     "connected-react-router": "^6.0.0",
     "file-loader": "^3.0.0",
+    "graphql-request": "^1.8.2",
     "history": "^4.7.2",
     "immer": "^2.0.0",
     "react": "16.8.0-alpha.1",
