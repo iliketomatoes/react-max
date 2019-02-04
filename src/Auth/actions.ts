@@ -21,3 +21,6 @@ export const logoutRequest = actionCreator('LOGOUT_REQUEST');
 
 /** An error has occurred while the user is logged in, either logging out or refreshing the token. */
 export const loggedInError = actionCreator<AuthError>('LOGGED_IN_ERROR');
+
+/** Part of the state that controls the info snackbar showed in the login page */
+export const acknowledgeDemoApp = actionCreator<boolean>('ACK_DEMO_APP');

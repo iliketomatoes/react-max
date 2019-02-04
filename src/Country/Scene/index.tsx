@@ -28,7 +28,7 @@ const CountryScene = () => {
   return (
     <div className={classes.root}>
       <header className={classes.header}>
-        <Typography component='h1' variant='display1'>Countries of the world</Typography>
+        <Typography component='h1' variant='h4'>Countries of the world</Typography>
       </header>
       <ApiQuery query={GET_COUNTRIES} defaultValue={{countries: []}}>{({ started, failed, data }) => {
           if (started) return 'Loading...';
