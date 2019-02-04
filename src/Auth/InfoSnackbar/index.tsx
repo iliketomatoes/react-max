@@ -1,44 +1,39 @@
-import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
-function AuthInfoSnackbar() {
-  // Check if the user is already acknowledged on
-  // the fact that this app is a demo
-  const [demoAppAck] = React.useState(sessionStorage.getItem('demoAppAck'));
-  const [open, setOpen] = React.useState(true);
-  const message = `This is a demo app. The sign-in form will let you login with any credentials.`;
+/* Import RootStoreState */
+import { RootStoreState } from 'src/rootReducer';
 
-  function toggleSnackbar() {
-    if (open) {
-      setOpen(false);
+/* Import module files */
+import * as actions from 'src/Auth/actions';
 
-      // Store the user acknowledgement in the session storage, so we don't show it again
-      sessionStorage.setItem('demoAppAck', 'true');
-    } else {
-      setOpen(true);
-    }
-  }
+/* Import pure component */
+import InfoSnackbar from './pure';
 
-  return (
-    <Snackbar
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left',
-      }}
-      open={open && demoAppAck === null}
-      autoHideDuration={6000}
-      ContentProps={{
-        'aria-describedby': 'message-id',
-      }}
-      message={<span id='message-id'>{message}</span>}
-      action={[
-        <Button key='undo' color='secondary' size='small' onClick={toggleSnackbar}>
-          Got it
-        </Button>,
-      ]}
-    />
-  );
+/**
+ * Interface for action callbacks that the container exposes to the component.
+ * The component's `this.props` is typed `Props & Actions`.
+ */
+export interface Actions {
+  acknowledge: () => void;
 }
 
-export default AuthInfoSnackbar;
+export interface Props {
+  hasAcknowledged: boolean;
+}
+
+/** Populate the Props from the store state. */
+const mapStateToProps = (state: RootStoreState): Props => {
+  return {
+    hasAcknowledged: state.auth.ackDemoApp,
+  };
+};
+
+/** Populate the Actions with the callbacks for the component. */
+const mapDispatchToProps = (dispatch: Dispatch): Actions => ({
+  acknowledge: () => {
+    dispatch(actions.acknowledgeDemoApp(true));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(InfoSnackbar);

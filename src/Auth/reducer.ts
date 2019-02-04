@@ -13,11 +13,13 @@ import { AuthError } from './types';
 export interface StoreState {
   accessToken: Nullable<string>;
   error: Nullable<AuthError>;
+  ackDemoApp: boolean;
 }
 
 const INITIAL_STATE: StoreState = {
   accessToken: null,
-  error: null
+  error: null,
+  ackDemoApp: false,
 };
 
 export const reducer = reducerWithInitialState(INITIAL_STATE)
@@ -33,5 +35,8 @@ export const reducer = reducerWithInitialState(INITIAL_STATE)
     }))
     .case(actions.loginRequest.failed, produce((draft: StoreState, payload) => {
       draft.error = payload.error;
+    }))
+    .case(actions.acknowledgeDemoApp, produce((draft: StoreState, payload) => {
+      draft.ackDemoApp = payload;
     }))
     ;
